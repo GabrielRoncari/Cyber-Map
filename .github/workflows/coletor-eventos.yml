@@ -1,0 +1,83 @@
+name: Coletor de eventos
+
+on:
+  schedule:
+    - cron: '0 9 * * *'   # todo dia, 06:00 em Brasília
+  workflow_dispatch:
+    inputs:
+      completo:
+        description: 'Carga completa (todas as buscas, uma por capital, até 200 páginas)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: coletor-eventos
+  cancel-in-progress: false
+
+jobs:
+  coletar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Guarda entre execuções as páginas já lidas e a triagem, para não gastar
+      # a cota da IA relendo tudo todo dia.
+      - name: Restaurar cache do coletor
+        uses: actions/cache/restore@v4
+        with:
+          path: scraper/.cache
+          key: coletor-${{ github.run_id }}
+          restore-keys: coletor-
+
+      - name: Coletar eventos
+        run: node scraper/run.mjs ${{ inputs.completo && '--completo' || '' }}
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+
+      - name: Salvar cache do coletor
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: scraper/.cache
+          key: coletor-${{ github.run_id }}
+
+      # Um PR só, na branch bot/eventos, refeito a cada execução a partir da
+      # branch principal. Sem nada pendente, o PR aberto é fechado.
+      - name: Abrir ou atualizar o PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE: ${{ github.event.repository.default_branch }}
+        run: |
+          set -euo pipefail
+          branch=bot/eventos
+          open=$(gh pr list --head "$branch" --state open --json number --jq '.[0].number' || true)
+          if git diff --quiet -- data/events.json; then
+            echo "Nenhum evento novo."
+            if [ -n "$open" ]; then
+              gh pr close "$open" --delete-branch --comment "Nada pendente: os eventos deste PR já estão no mapa ou foram ignorados."
+            fi
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -C "$branch"
+          git add data/events.json
+          git commit -m "Coletor: eventos novos para revisar"
+          git push --force origin "$branch"
+          if [ -n "$open" ]; then
+            gh pr edit "$open" --body-file scraper/.cache/pr-body.md
+          else
+            gh pr create --base "$BASE" --head "$branch" --title "Eventos novos encontrados pelo coletor" --body-file scraper/.cache/pr-body.md
+          fi

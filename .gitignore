@@ -1,0 +1,22 @@
+# Logs do npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# MacOS
+.DS_Store
+
+# Dependency-Check
+reports/
+
+# Arquivos temporários
+*.tmp
+
+
+# Coletor de eventos: chaves locais e cache
+.env
+scraper/.cache/
+
+# Só locais: o site antigo arquivado e o material do redesign
+_arquivo-pirate-ship/
+handoff-cybermap/

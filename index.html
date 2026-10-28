@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cyber Map — Eventos de segurança no Brasil</title>
+  <meta name="description" content="Mapa dos eventos presenciais de segurança da informação e cultura hacker no Brasil.">
+  <!-- Se o site ganhar domínio próprio, trocar o endereço aqui e no og:url. -->
+  <link rel="canonical" href="https://gabrielroncari.github.io/Cyber-Map/">
+  <!-- TODO: og:image (imagem de 1200x630) e trocar twitter:card para summary_large_image. -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gabrielroncari.github.io/Cyber-Map/">
+  <meta property="og:site_name" content="Cyber Map">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Cyber Map — Eventos de segurança no Brasil">
+  <meta property="og:description" content="Mapa dos eventos presenciais de segurança da informação e cultura hacker no Brasil.">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#0F0C16">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/cyber-map.css">
+  <script src="js/cyber-map.js" defer></script>
+</head>
+<body id="topo">
+  <a class="skip-link" href="#mapa">Pular para o mapa</a>
+
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="#topo" aria-label="Cyber Map — início">
+        <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+          <rect class="brand-tile" x="0.5" y="0.5" width="31" height="31" rx="9"></rect>
+          <circle class="brand-dash" cx="16" cy="16" r="9"></circle>
+          <circle class="brand-ring" cx="16" cy="16" r="4.6"></circle>
+          <circle class="brand-dot" cx="16" cy="16" r="1.9"></circle>
+          <path class="brand-ticks" d="M16 4v4.5M16 23.5V28M4 16h4.5M23.5 16H28"></path>
+        </svg>
+        <span class="brand-name">Cyber Map</span>
+        <span class="brand-badge">BR</span>
+      </a>
+      <nav class="site-nav" aria-label="Principal">
+        <a class="nav-link" href="#mapa" aria-current="page">Mapa</a>
+        <a class="nav-link" href="#calendario">Calendário</a>
+        <!-- TODO: link para sugerir evento (o JS troca pelo SUGGEST_URL de js/cyber-map.js) -->
+        <a class="btn-primary nav-suggest" href="#" data-suggest>
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1.5v11M1.5 7h11"></path></svg>
+          Sugerir evento
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="mapa" class="page">
+    <section class="intro">
+      <div class="intro-text">
+        <p class="kicker">Radar · eventos presenciais</p>
+        <h1>Eventos de segurança no Brasil</h1>
+      </div>
+      <dl class="stats">
+        <div>
+          <dt>Eventos em <span data-year>2026</span></dt>
+          <dd id="stat-total">—</dd>
+        </div>
+        <div>
+          <dt>UFs no mapa</dt>
+          <dd id="stat-ufs">—</dd>
+        </div>
+        <div>
+          <dt>Ainda por vir</dt>
+          <dd id="stat-upcoming" class="is-accent">—</dd>
+        </div>
+      </dl>
+    </section>
+
+    <div class="radar">
+      <section class="map-card" id="map-card" aria-label="Mapa do Brasil" data-map="loading">
+        <div class="map-corner map-corner-start">
+          <p class="map-chip map-hint" id="map-hint"><span class="chip-dot" aria-hidden="true"></span>Clique em um estado para filtrar</p>
+          <button type="button" class="btn-ghost map-back" id="map-back" aria-label="Limpar filtro e voltar ao mapa do Brasil" hidden>
+            <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3.5L5.5 8l4.5 4.5"></path></svg>
+            Brasil
+          </button>
+          <p class="map-chip map-chip-accent" id="map-state-label" hidden></p>
+        </div>
+
+        <div class="map-host" id="brazil-map"></div>
+        <div class="map-status" id="map-status" role="status">
+          <p id="map-status-text">Carregando mapa…</p>
+          <button type="button" class="btn-ghost" id="map-retry" hidden>Tentar de novo</button>
+        </div>
+
+        <div class="map-corner map-corner-end" aria-live="polite">
+          <p class="map-readout" id="map-readout" hidden><span class="map-readout-code" id="map-readout-code"></span><span id="map-readout-text"></span></p>
+        </div>
+
+        <div class="map-legend">
+          <p class="map-legend-title">Eventos em <span data-year>2026</span></p>
+          <div class="map-legend-scale">
+            <span><span class="swatch swatch-0" aria-hidden="true"></span>0</span>
+            <span><span class="swatch swatch-1" aria-hidden="true"></span>1</span>
+            <span><span class="swatch swatch-2" aria-hidden="true"></span>2+</span>
+          </div>
+          <div class="map-legend-pins">
+            <span><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><circle class="legend-pin-up" cx="6" cy="6" r="4"></circle></svg>Próximo</span>
+            <span><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><circle class="legend-pin-past" cx="6" cy="6" r="3.4"></circle></svg>Já rolou</span>
+          </div>
+        </div>
+      </section>
+
+      <aside class="panel" aria-label="Agenda de eventos">
+        <div class="panel-head">
+          <div class="panel-head-row">
+            <div class="panel-title" aria-live="polite">
+              <p class="kicker-sm" id="panel-kicker">Agenda <span data-year>2026</span></p>
+              <h2 id="panel-title" tabindex="-1">Todo o Brasil</h2>
+            </div>
+            <button type="button" class="btn-ghost panel-clear" id="panel-clear" hidden>Limpar filtro</button>
+          </div>
+          <div class="tabs" role="group" aria-label="Período">
+            <button type="button" class="tab" id="tab-up" aria-pressed="true">Próximos <span class="tab-count tab-count-up" id="tab-up-count">0</span></button>
+            <button type="button" class="tab" id="tab-past" aria-pressed="false">Já rolou <span class="tab-count" id="tab-past-count">0</span></button>
+          </div>
+        </div>
+        <div class="panel-body scroll-thin" id="event-list"></div>
+      </aside>
+    </div>
+
+    <section id="calendario" class="calendar" aria-labelledby="cal-title">
+      <div class="cal-toolbar">
+        <div class="stack-6">
+          <p class="kicker-sm">Calendário</p>
+          <h2 id="cal-title" aria-live="polite">Calendário</h2>
+        </div>
+        <div class="cal-controls">
+          <button type="button" class="btn-ghost cal-today" id="cal-today">Hoje</button>
+          <button type="button" class="btn-ghost cal-step" id="cal-prev" aria-label="Mês anterior">
+            <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3.5L5.5 8l4.5 4.5"></path></svg>
+          </button>
+          <button type="button" class="btn-ghost cal-step" id="cal-next" aria-label="Próximo mês">
+            <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5L10.5 8 6 12.5"></path></svg>
+          </button>
+          <label class="cal-state">
+            <span class="sr-only">Estado</span>
+            <select id="cal-state"><option value="">Todos os estados</option></select>
+            <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"></path></svg>
+          </label>
+          <div class="tabs cal-modes" role="group" aria-label="Quais eventos mostrar">
+            <button type="button" class="tab" id="cal-all" aria-pressed="true">Todos</button>
+            <button type="button" class="tab" id="cal-mine" aria-pressed="false">Minha agenda <span class="tab-count tab-count-up" id="cal-mine-count">0</span></button>
+          </div>
+          <button type="button" class="btn-ghost cal-export" id="cal-export">
+            <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1.5v7.5M3.8 6 7 9.2 10.2 6M2 12.5h10"></path></svg>
+            Exportar .ics
+          </button>
+        </div>
+      </div>
+      <p class="cal-hint" id="cal-hint" hidden></p>
+      <div class="cal-grid">
+        <div class="cal-head" aria-hidden="true"><span>DOM</span><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span></div>
+        <div id="cal-weeks"></div>
+      </div>
+      <p class="cal-note">Toque num evento para ver os detalhes, salvar na sua agenda ou levar para o Google Agenda. Feriados nacionais aparecem nos dias. O filtro de estado é um só para o calendário, o mapa e a lista.</p>
+    </section>
+  </main>
+
+  <dialog id="event-modal" class="modal" aria-labelledby="modal-title">
+    <article class="modal-card">
+      <button type="button" class="btn-ghost modal-close" id="modal-close" aria-label="Fechar">
+        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 2.5l9 9M11.5 2.5l-9 9"></path></svg>
+      </button>
+      <header class="modal-head">
+        <div class="logo logo-64" id="modal-logo"></div>
+        <div class="modal-head-text">
+          <p class="modal-meta" id="modal-meta"></p>
+          <h2 id="modal-title"></h2>
+          <p class="modal-place" id="modal-place"></p>
+        </div>
+      </header>
+      <p class="venue modal-venue" id="modal-venue" hidden>
+        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 12.6s4.2-3.9 4.2-7.1A4.2 4.2 0 0 0 2.8 5.5c0 3.2 4.2 7.1 4.2 7.1z"></path><circle cx="7" cy="5.5" r="1.5"></circle></svg>
+        <span id="modal-venue-text"></span>
+      </p>
+      <p class="modal-note" id="modal-past" hidden>Este evento já aconteceu.</p>
+      <p class="modal-when" id="modal-when" hidden></p>
+      <p class="modal-desc" id="modal-desc"></p>
+      <ul class="modal-links" id="modal-links"></ul>
+      <p class="modal-nolinks" id="modal-nolinks" hidden>Ainda não temos links confirmados deste evento.</p>
+      <div class="modal-foot">
+        <button type="button" class="btn-ghost modal-save" id="modal-save" aria-pressed="false" title="Salvar na minha agenda">
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1.4l1.7 3.5 3.8.5-2.8 2.6.7 3.8L7 10l-3.4 1.8.7-3.8L1.5 5.4l3.8-.5z"></path></svg>
+          <span id="modal-save-text">Salvar</span>
+        </button>
+        <a class="btn-ghost modal-gcal" id="modal-gcal" href="https://calendar.google.com/" target="_blank" rel="noopener">Google Agenda ↗</a>
+        <button type="button" class="btn-ghost modal-ics" id="modal-ics">
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1.5v7.5M3.8 6 7 9.2 10.2 6M2 12.5h10"></path></svg>
+          Baixar .ics
+        </button>
+        <button type="button" class="btn-ghost modal-map" id="modal-map">
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle class="target-ring" cx="7" cy="7" r="5"></circle><circle class="target-dot" cx="7" cy="7" r="1.6"></circle></svg>
+          Ver no mapa
+        </button>
+      </div>
+    </article>
+  </dialog>
+</body>
+</html>

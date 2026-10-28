@@ -1,0 +1,919 @@
+{
+  "events": [
+    {
+      "name": "Oxum Sec",
+      "calendarLabel": "Oxum Sec",
+      "type": "conference",
+      "city": "Salvador",
+      "state": "ba",
+      "lat": -12.9718,
+      "lon": -38.5011,
+      "startDate": "2026-01-31",
+      "description": "Novo evento que surge nesse ano na capital baiana, organizado pelo pessoal do Raul Hacker Clube.",
+      "links": {
+        "site": "https://axesec.cc/pages/oxum/"
+      }
+    },
+    {
+      "name": "CTF SHC 2026",
+      "calendarLabel": "CTF SHC",
+      "type": "ctf",
+      "city": "Campo Grande",
+      "state": "ms",
+      "lat": -20.4486,
+      "lon": -54.6295,
+      "venue": "LIVING LAB MS",
+      "startDate": "2026-02-26",
+      "description": "Início do projeto CTF SHC 2026 com foco em cibersegurança e desafios reais.",
+      "links": {
+        "tickets": "https://www.sympla.com.br/evento/ctf-shc-2026/3321939"
+      }
+    },
+    {
+      "name": "Digital Investigation Conference Brazil 2026",
+      "calendarLabel": "DICB 2026",
+      "type": "conference",
+      "city": "Porto Alegre",
+      "state": "rs",
+      "lat": -30.0318,
+      "lon": -51.2065,
+      "startDate": "2026-02-26",
+      "endDate": "2026-02-27",
+      "description": "Segundo ano desse evento focado na investigação de crimes cibernéticos.",
+      "links": {
+        "site": "https://wbeducacional.ac-page.com/dicb-2026"
+      }
+    },
+    {
+      "name": "Security Leaders Brasília 2026",
+      "calendarLabel": "Security Leaders",
+      "type": "conference",
+      "city": "Brasília",
+      "state": "df",
+      "lat": -15.7795,
+      "lon": -47.9297,
+      "venue": "Hotel Windsor Plaza Brasilia",
+      "startDate": "2026-03-04",
+      "description": "Brasília será palco de um encontro transformador para líderes de Segurança da Informação e Cibersegurança."
+    },
+    {
+      "name": "Hack In Cariri - 3ª edição",
+      "calendarLabel": "Hack In Cariri",
+      "type": "conference",
+      "city": "Crato",
+      "state": "ce",
+      "lat": -7.2153,
+      "lon": -39.4103,
+      "venue": "Centro de Convenções do Cariri",
+      "startDate": "2026-03-07",
+      "description": "A 3ª edição do Hack In Cariri traz palestras e um grande CTF presencial no Ceará.",
+      "links": {
+        "tickets": "https://www.sympla.com.br/evento/hack-in-cariri-3-edicao/3144978"
+      }
+    },
+    {
+      "name": "CyberSecurity Forum 2026",
+      "calendarLabel": "CyberSecurity Forum",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "WTC EVENTS CENTER",
+      "startDate": "2026-03-09",
+      "description": "Fórum de cibersegurança discutindo riscos, Zero Trust, LGPD e inovação em São Paulo.",
+      "links": {
+        "site": "https://tiinside.com.br/cybersecurityforum/",
+        "tickets": "https://www.sympla.com.br/evento/cybersecurity-forum-2026/3160291?_gl=1*kmh96y*_gcl_au*MTMzODg5ODkxMS4xNzYwMDExMzg5LjIzOTM2MTUxMy4xNzYwMDE5MTExLjE3NjAwMTkxMTA.*_ga*MTM5NjY1NDg0Mi4xNzYwMDExMzg5*_ga_KXH10SQTZF*czE3NjAwMTgzNjIkbzE4JGcxJHQxNzYwMDE5MjU1JGozOSRsMCRoMTU3NTI4Nzg3Ng..&share_id=copiarlink",
+        "youtube": "https://www.youtube.com/watch?v=5CBPHT28NvE"
+      }
+    },
+    {
+      "name": "SecOps Summit 2026",
+      "calendarLabel": "SecOps Summit",
+      "type": "conference",
+      "city": "Porto Alegre",
+      "state": "rs",
+      "lat": -30.0318,
+      "lon": -51.2065,
+      "startDate": "2026-03-18",
+      "endDate": "2026-03-20",
+      "description": "Grande evento de cibersegurança em Porto Alegre, com grande quantidade de participantes e estrutura caprichada.",
+      "links": {
+        "site": "https://www.secopssummit.com.br/"
+      }
+    },
+    {
+      "name": "Security BSides Rio de Janeiro 2026",
+      "calendarLabel": "BSides Rio",
+      "type": "conference",
+      "city": "Rio de Janeiro",
+      "state": "rj",
+      "lat": -22.9129,
+      "lon": -43.2003,
+      "startDate": "2026-03-28",
+      "description": "Edição carioca da conferência comunitária Security BSides."
+    },
+    {
+      "name": "TOSCONF",
+      "calendarLabel": "TOSCONF",
+      "type": "conference",
+      "city": "Campinas",
+      "state": "sp",
+      "lat": -22.9053,
+      "lon": -47.0659,
+      "startDate": "2026-03-28",
+      "description": "Evento despretencioso organizado pelo pessoal do Laboratório Hacker de Campinas.",
+      "links": {
+        "site": "https://tosconf.lhc.net.br/"
+      }
+    },
+    {
+      "name": "Security Leaders Rio de Janeiro 2026",
+      "calendarLabel": "Security Leaders",
+      "type": "conference",
+      "city": "Rio de Janeiro",
+      "state": "rj",
+      "lat": -22.9129,
+      "lon": -43.2003,
+      "venue": "Prodigy Santos Dumont by Wish",
+      "startDate": "2026-04-01",
+      "description": "Etapa do Rio de Janeiro do Congresso Security Leaders.",
+      "links": {
+        "site": "https://securityleaders.com.br/security-leaders/"
+      }
+    },
+    {
+      "name": "0xE Hacker Conference 2026",
+      "calendarLabel": "0xE Hacker Conf",
+      "type": "conference",
+      "city": "Maceió",
+      "state": "al",
+      "lat": -9.666,
+      "lon": -35.735,
+      "venue": "Maceió Atlantic Suites",
+      "startDate": "2026-04-11",
+      "description": "Conferência dedicada ao compartilhamento de conhecimento sobre hacking e segurança.",
+      "links": {
+        "site": "https://doity.com.br/0xe-hacker-conference-2026",
+        "tickets": "https://doity.com.br/0xe-hacker-conference-2026"
+      }
+    },
+    {
+      "name": "Security Leaders Cyber Arena 2026",
+      "calendarLabel": "Cyber Arena",
+      "type": "conference",
+      "city": "Guarujá",
+      "state": "sp",
+      "lat": -23.9888,
+      "lon": -46.258,
+      "venue": "Hotel Jequitimar Guarujá Resort & Spa By Accor",
+      "startDate": "2026-04-17",
+      "endDate": "2026-04-19",
+      "description": "Security Leaders Cyber Arena 2026 no Hotel Jequitimar Guarujá Resort & Spa.",
+      "links": {
+        "site": "https://securityleaders.com.br/",
+        "youtube": "https://www.youtube.com/@TVSecurity"
+      }
+    },
+    {
+      "name": "Security BSides Floripa 2026",
+      "calendarLabel": "BSides Floripa",
+      "type": "conference",
+      "city": "Florianópolis",
+      "state": "sc",
+      "lat": -27.5945,
+      "lon": -48.5477,
+      "startDate": "2026-04-25",
+      "description": "Edição catarinense da conferência comunitária Security BSides."
+    },
+    {
+      "name": "CYBER SECURITY SP 2026",
+      "calendarLabel": "Cyber Security SP",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "Centro de Convenções Frei Caneca",
+      "startDate": "2026-05-06",
+      "description": "Uma conferência estratégica para líderes e executivos sobre cibersegurança e gestão de riscos.",
+      "links": {
+        "site": "https://www.sympla.com.br/evento/cyber-security-sp-2026/3215251",
+        "tickets": "https://www.sympla.com.br/evento/cyber-security-sp-2026/3215251"
+      }
+    },
+    {
+      "name": "CryptoRave 2026",
+      "calendarLabel": "CryptoRave 2026",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "Biblioteca Mário de Andrade",
+      "startDate": "2026-05-08",
+      "endDate": "2026-05-09",
+      "description": "Encontro gratuito que promove 24 horas de atividades sobre segurança digital, criptografia e hacking.",
+      "links": {
+        "tickets": "https://tickets.cryptorave.org/cr/cr2026/",
+        "youtube": "https://www.youtube.com/channel/UCfJ2Q9ztzbmfmSeDWbCmZ3Q"
+      }
+    },
+    {
+      "name": "Security Leaders Belo Horizonte 2026",
+      "calendarLabel": "SL Belo Horizonte",
+      "type": "conference",
+      "city": "Belo Horizonte",
+      "state": "mg",
+      "lat": -19.9102,
+      "lon": -43.9266,
+      "venue": "Ouro Minas Hotel Belo Horizonte",
+      "startDate": "2026-05-12",
+      "description": "Security Leaders Belo Horizonte 2026 no Ouro Minas Hotel.",
+      "links": {
+        "site": "https://securityleaders.com.br/",
+        "youtube": "https://www.youtube.com/@TVSecurity"
+      }
+    },
+    {
+      "name": "SIRENA 2026 - Human Risk & Cybersec Conference",
+      "calendarLabel": "SIRENA",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "Estanplaza International",
+      "startDate": "2026-05-14",
+      "description": "Conferência dedicada à conscientização, risco humano e segurança da informação.",
+      "links": {
+        "site": "https://www.sympla.com.br/evento/sirena-2026-human-risk-cybersec-conference/3278845",
+        "tickets": "https://www.sympla.com.br/evento/sirena-2026-human-risk-cybersec-conference/3278845"
+      }
+    },
+    {
+      "name": "Security BSides São Paulo 2026",
+      "calendarLabel": "BSides SP",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "startDate": "2026-05-16",
+      "endDate": "2026-05-17",
+      "description": "21ª edição: um dia de treinamentos e um dia de palestras e villages.",
+      "links": {
+        "site": "https://securitybsides.com.br/2026/",
+        "tickets": "https://www.sympla.com.br/evento/security-bsides-sao-paulo-bsidessp-2026/3371477"
+      }
+    },
+    {
+      "name": "Security Leaders Porto Alegre 2026",
+      "calendarLabel": "SL Porto Alegre",
+      "type": "conference",
+      "city": "Porto Alegre",
+      "state": "rs",
+      "lat": -30.0318,
+      "lon": -51.2065,
+      "venue": "Hotel Hilton Porto Alegre",
+      "startDate": "2026-05-27",
+      "description": "Security Leaders Porto Alegre 2026 no Hotel Hilton Porto Alegre.",
+      "links": {
+        "site": "https://securityleaders.com.br/",
+        "youtube": "https://www.youtube.com/@TVSecurity"
+      }
+    },
+    {
+      "name": "DunaSec 2026",
+      "calendarLabel": "DunaSec 2026",
+      "type": "conference",
+      "city": "Natal",
+      "state": "rn",
+      "lat": -5.7936,
+      "lon": -35.1986,
+      "venue": "Hotel Escola Senac Barreira Roxa",
+      "startDate": "2026-05-30",
+      "description": "Conferência de cibersegurança do Nordeste com trilhas Técnica e Gerencial em Natal/RN.",
+      "links": {
+        "site": "https://dunasec.com.br",
+        "tickets": "https://www.sympla.com.br/evento/dunasec-2026/3332895"
+      }
+    },
+    {
+      "name": "Security BSides Recife 2026",
+      "calendarLabel": "BSides Recife",
+      "type": "conference",
+      "city": "Recife",
+      "state": "pe",
+      "lat": -8.0467,
+      "lon": -34.8771,
+      "startDate": "2026-06-06",
+      "description": "Edição pernambucana da conferência comunitária Security BSides."
+    },
+    {
+      "name": "Security Leaders Curitiba 2026",
+      "calendarLabel": "Security Leaders",
+      "type": "conference",
+      "city": "Curitiba",
+      "state": "pr",
+      "lat": -25.4195,
+      "lon": -49.2646,
+      "venue": "Qoya Hotel Curitiba",
+      "startDate": "2026-06-10",
+      "description": "Encontro que une estratégia, tecnologia e colaboração em segurança digital.",
+      "links": {
+        "site": "https://securityleaders.com.br/eventos/security-leaders-curitiba-2026/#Inscricao",
+        "instagram": "https://www.instagram.com/assespropr/",
+        "twitter": "https://twitter.com/AssesproPR",
+        "facebook": "https://www.facebook.com/assespropr",
+        "linkedin": "https://www.linkedin.com/company/assespro-pr/",
+        "youtube": "https://www.youtube.com/user/assespropr"
+      }
+    },
+    {
+      "name": "Security Leaders Florianópolis 2026",
+      "calendarLabel": "SL Florianópolis",
+      "type": "conference",
+      "city": "Florianópolis",
+      "state": "sc",
+      "lat": -27.5945,
+      "lon": -48.5477,
+      "venue": "Majestic Palace Hotel",
+      "startDate": "2026-06-17",
+      "description": "Security Leaders Florianópolis 2026 no Majestic Palace Hotel.",
+      "links": {
+        "site": "https://securityleaders.com.br/",
+        "youtube": "https://www.youtube.com/@TVSecurity"
+      }
+    },
+    {
+      "name": "Security BSides Vitória 2026",
+      "calendarLabel": "BSides Vitória",
+      "type": "conference",
+      "city": "Vitória",
+      "state": "es",
+      "lat": -20.3155,
+      "lon": -40.3128,
+      "startDate": "2026-06-20",
+      "logo": "images/events/bsides-vitoria.png",
+      "description": "Edição capixaba da conferência comunitária Security BSides.",
+      "links": {
+        "site": "https://bsides.vix.br/"
+      }
+    },
+    {
+      "name": "Cybersecurity Summit Rio 2026",
+      "calendarLabel": "Cyber Summit Rio",
+      "type": "conference",
+      "city": "Rio de Janeiro",
+      "state": "rj",
+      "lat": -22.9129,
+      "lon": -43.2003,
+      "venue": "Centro de Convenções RB1",
+      "startDate": "2026-06-30",
+      "endDate": "2026-07-01",
+      "description": "Quarta edição do Cybersecurity Summit Rio conectando segurança, tecnologia e negócios.",
+      "links": {
+        "tickets": "https://www.sympla.com.br/evento/cybersecurity-summit-rio-2026/3438685"
+      }
+    },
+    {
+      "name": "CajuSec - Security Conference 2026",
+      "calendarLabel": "CajuSec",
+      "type": "conference",
+      "city": "Aracaju",
+      "state": "se",
+      "lat": -10.9091,
+      "lon": -37.0677,
+      "venue": "Memorial de Sergipe - Prof Jouberto Uchôa",
+      "startDate": "2026-07-11",
+      "description": "Evento de Segurança da Informação reunindo estudantes, profissionais e entusiastas da área em Sergipe.",
+      "links": {
+        "site": "https://www.sympla.com.br/evento/cajusec-security-conference-2026/3304996",
+        "tickets": "https://www.sympla.com.br/evento/cajusec-security-conference-2026/3304996",
+        "twitter": "https://twitter.com/sympla/"
+      }
+    },
+    {
+      "name": "Gartner Security & Risk Management Summit",
+      "calendarLabel": "Gartner SP",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "startDate": "2026-08-04",
+      "endDate": "2026-08-05",
+      "description": "Gartner Security & Risk Management Summit in São Paulo."
+    },
+    {
+      "name": "SEGURANÇA DIGITAL E SERVIÇOS GERENCIADOS - 2026",
+      "calendarLabel": "SDSG 2026",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "Espaço de Eventos KPMG",
+      "startDate": "2026-08-11",
+      "description": "Discussão sobre cibersegurança, nuvem, proteção de dados e serviços gerenciados B2B.",
+      "links": {
+        "site": "https://www.sympla.com.br/evento/seguranca-digital-e-servicos-gerenciados-2026/3321473",
+        "tickets": "https://www.sympla.com.br/evento/seguranca-digital-e-servicos-gerenciados-2026/3321473"
+      }
+    },
+    {
+      "name": "Security Leaders Recife 2026",
+      "calendarLabel": "Security Leaders",
+      "type": "conference",
+      "city": "Recife",
+      "state": "pe",
+      "lat": -8.0467,
+      "lon": -34.8771,
+      "venue": "Mar Hotel Conventions Recife",
+      "startDate": "2026-08-12",
+      "description": "Encontro para elevar a maturidade das empresas e inspirar a nova geração de CISOs.",
+      "links": {
+        "site": "https://securityleaders.com.br/eventos/security-leaders-recife-2026/",
+        "instagram": "https://www.instagram.com/securityleaders/",
+        "facebook": "https://www.facebook.com/SecLeaders",
+        "linkedin": "https://www.linkedin.com/showcase/security-leaders/"
+      }
+    },
+    {
+      "name": "Security BSides Fortaleza 2026",
+      "calendarLabel": "BSides Fortaleza",
+      "type": "conference",
+      "city": "Fortaleza",
+      "state": "ce",
+      "lat": -3.7166,
+      "lon": -38.5423,
+      "venue": "Centro Universitário Estácio - Campus Parangaba",
+      "startDate": "2026-08-15",
+      "description": "O BSides Fortaleza 2026 reúne a comunidade de segurança da informação, tecnologia e cultura hacker.",
+      "links": {
+        "tickets": "https://www.sympla.com.br/evento/security-bsides-fortaleza-2026/3494778"
+      }
+    },
+    {
+      "name": "Festival Hacker Senac 2026",
+      "calendarLabel": "Festival Hacker",
+      "type": "conference",
+      "city": "Goiânia",
+      "state": "go",
+      "lat": -16.6864,
+      "lon": -49.2643,
+      "venue": "Senac Cora Coralina",
+      "startDate": "2026-08-21",
+      "endDate": "2026-08-22",
+      "description": "Festival de cibersegurança e tecnologia com palestras, oficinas e CTF em Goiânia.",
+      "links": {
+        "site": "https://pages.go.senac.br/festival-hacker-senac",
+        "tickets": "https://www.sympla.com.br/evento/festival-hacker-senac-2026/3519995",
+        "youtube": "https://www.youtube.com/user/revistazelo"
+      }
+    },
+    {
+      "name": "BXSEC 2026",
+      "calendarLabel": "BXSEC",
+      "type": "conference",
+      "city": "Santos",
+      "state": "sp",
+      "lat": -23.9535,
+      "lon": -46.335,
+      "venue": "Hotel Sheraton Santos",
+      "startDate": "2026-08-22",
+      "description": "Conferência Baixada Santista Security de segurança da informação e cultura hacker.",
+      "links": {
+        "site": "https://www.sympla.com.br/evento/bxsec-2026/3379445",
+        "tickets": "https://www.sympla.com.br/evento/bxsec-2026/3379445"
+      }
+    },
+    {
+      "name": "XXVI Simpósio Brasileiro de Cibersegurança",
+      "calendarLabel": "SBSeg 2026",
+      "type": "conference",
+      "city": "Armação dos Búzios",
+      "state": "rj",
+      "lat": -22.7528,
+      "lon": -41.8846,
+      "startDate": "2026-09-01",
+      "endDate": "2026-09-04",
+      "description": "Maior evento acadêmico brasileiro na área de Cibersegurança.",
+      "links": {
+        "site": "https://www.sbseg2026.uff.br/",
+        "instagram": "https://www.instagram.com/sbseg2026/",
+        "twitter": "https://x.com/sbseg_sbc"
+      }
+    },
+    {
+      "name": "Security Leaders Salvador 2026",
+      "calendarLabel": "SL Salvador",
+      "type": "conference",
+      "city": "Salvador",
+      "state": "ba",
+      "lat": -12.9718,
+      "lon": -38.5011,
+      "venue": "Hotel Deville Prime Salvador",
+      "startDate": "2026-09-10",
+      "description": "Security Leaders Salvador 2026 no Hotel Deville Prime Salvador.",
+      "links": {
+        "site": "https://securityleaders.com.br/",
+        "youtube": "https://www.youtube.com/@TVSecurity"
+      }
+    },
+    {
+      "name": "Mind The Sec 2026",
+      "calendarLabel": "Mind The Sec",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "Transamérica Expo Center",
+      "startDate": "2026-09-15",
+      "endDate": "2026-09-17",
+      "logo": "images/events/mindthesec.png",
+      "description": "Maior congresso e feira de negócios de cibersegurança do Hemisfério Sul.",
+      "links": {
+        "site": "https://www.mindthesec.com.br/"
+      }
+    },
+    {
+      "name": "Security BSides João Pessoa 2026",
+      "calendarLabel": "BSides JP",
+      "type": "conference",
+      "city": "João Pessoa",
+      "state": "pb",
+      "lat": -7.1151,
+      "lon": -34.8641,
+      "startDate": "2026-09-19",
+      "logo": "images/events/bsides-jp.png",
+      "description": "Conferência presencial, aberta e sem fins lucrativos da comunidade de segurança.",
+      "links": {
+        "site": "https://www.bsidesjp.com.br/"
+      }
+    },
+    {
+      "name": "XibéSec 2026",
+      "calendarLabel": "XibéSec 2026",
+      "type": "conference",
+      "city": "Belém",
+      "state": "pa",
+      "lat": -1.4554,
+      "lon": -48.4898,
+      "startDate": "2026-09-19",
+      "description": "Encontro voltado à comunidade de Segurança da Informação da Amazônia.",
+      "links": {
+        "site": "https://tipara.com.br/belem-recebe-o-xibesec-2026-e-reune-comunidade-de-seguranca-da-informacao-da-amazonia/",
+        "tickets": "https://www.sympla.com.br/evento/xibesec-2026/3470128?referrer=tipara.com.br"
+      }
+    },
+    {
+      "name": "Exercício Guardião Cibernético 8.0",
+      "calendarLabel": "Guardião Cibernético",
+      "type": "workshop",
+      "city": "Manaus",
+      "state": "am",
+      "lat": -3.1187,
+      "lon": -60.0212,
+      "venue": "ESCOLA SUPERIOR DE TECNOLOGIA DA UNIVERSIDADE DO ESTADO DO AMAZONAS - EST/UEA",
+      "startDate": "2026-09-21",
+      "endDate": "2026-09-25",
+      "description": "Treinamento de defesa cibernética reunindo Forças Armadas, órgãos públicos e empresas.",
+      "links": {
+        "site": "https://www.sympla.com.br/evento/exercicio-guardiao-cibernetico-8-0/3535193",
+        "tickets": "https://www.sympla.com.br/evento/exercicio-guardiao-cibernetico-8-0/3535193"
+      }
+    },
+    {
+      "name": "LGPD Day 2026",
+      "calendarLabel": "LGPD Day",
+      "type": "conference",
+      "city": "Aracaju",
+      "state": "se",
+      "lat": -10.9091,
+      "lon": -37.0677,
+      "venue": "Tiradentes Innovation Center",
+      "startDate": "2026-09-22",
+      "description": "Debate sobre proteção de dados, privacidade, governança e segurança da informação.",
+      "links": {
+        "site": "https://doity.com.br/lgpdday2026",
+        "tickets": "https://doity.com.br/lgpdday2026",
+        "twitter": "https://twitter.com/tiradentesinnovation"
+      }
+    },
+    {
+      "name": "Security Leaders Fortaleza 2026",
+      "calendarLabel": "Security Leaders",
+      "type": "conference",
+      "city": "Fortaleza",
+      "state": "ce",
+      "lat": -3.7166,
+      "lon": -38.5423,
+      "venue": "Hotel Vila Galé Fortaleza",
+      "startDate": "2026-09-23",
+      "description": "Encontro que une estratégia, inovação e colaboração para aumentar a maturidade em Segurança da Informação.",
+      "links": {
+        "site": "https://securityleaders.com.br/eventos/security-leaders-fortaleza-2026/",
+        "tickets": "https://checkout.securityleaders.com.br/"
+      }
+    },
+    {
+      "name": "Latinoware 2026",
+      "calendarLabel": "Latinoware",
+      "type": "conference",
+      "city": "Foz do Iguaçu",
+      "state": "pr",
+      "lat": -25.5427,
+      "lon": -54.5827,
+      "venue": "Grand Carimã Resort & Convention Center",
+      "startDate": "2026-10-14",
+      "endDate": "2026-10-16",
+      "logo": "images/events/latinoware.png",
+      "description": "23º Congresso Latino-Americano de Software Livre e Tecnologias Abertas.",
+      "links": {
+        "site": "https://latinoware.org/"
+      }
+    },
+    {
+      "name": "XVI Conferência Nacional em Comunicações, Redes e Segurança da Informação - ENCOM 2026",
+      "calendarLabel": "ENCOM 2026",
+      "type": "conference",
+      "city": "João Pessoa",
+      "state": "pb",
+      "lat": -7.1151,
+      "lon": -34.8641,
+      "venue": "Centro de Energias Alternativas e Renováveis (CEAR) da UFPB",
+      "startDate": "2026-10-16",
+      "endDate": "2026-10-18",
+      "description": "Conferência nacional em comunicações, redes e segurança da informação.",
+      "links": {
+        "site": "https://www.even3.com.br/encom-2026-776552/",
+        "tickets": "https://www.even3.com.br/encom-2026-776552/"
+      }
+    },
+    {
+      "name": "Security BSides Curitiba 2026",
+      "calendarLabel": "BSides Curitiba",
+      "type": "conference",
+      "city": "Curitiba",
+      "state": "pr",
+      "lat": -25.4195,
+      "lon": -49.2646,
+      "startDate": "2026-10-17",
+      "logo": "images/events/bsides-curitiba.svg",
+      "description": "Edição curitibana da conferência comunitária Security BSides.",
+      "links": {
+        "site": "https://www.bsidescwb.com.br/",
+        "instagram": "https://www.instagram.com/bsidescwb/"
+      }
+    },
+    {
+      "name": "Security Leaders Nacional 2026",
+      "calendarLabel": "Security Leaders",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "WTC - Av. das Nações Unidas, 12551 - Piso C",
+      "startDate": "2026-10-21",
+      "endDate": "2026-10-22",
+      "description": "Maior evento de Segurança da Informação e Cibernética do Brasil.",
+      "links": {
+        "site": "https://securityleaders.com.br/security-leaders/",
+        "tickets": "https://securityleaders.com.br/security-leaders/"
+      }
+    },
+    {
+      "name": "CS4CA LATAM Summit",
+      "calendarLabel": "CS4CA LATAM",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "startDate": "2026-10-27",
+      "endDate": "2026-10-28",
+      "description": "Conferência para líderes de segurança de TI e OT em indústrias críticas na América Latina.",
+      "links": {
+        "site": "https://latam.cs4ca.com/",
+        "twitter": "https://twitter.com/QGMedia_tech",
+        "youtube": "https://www.youtube.com/channel/UCsLWRXjGzJ2RXQlmRlOoFPQ/videos"
+      }
+    },
+    {
+      "name": "Human Risk Day 2026",
+      "calendarLabel": "Human Risk Day",
+      "type": "conference",
+      "city": "Porto Alegre",
+      "state": "rs",
+      "lat": -30.0318,
+      "lon": -51.2065,
+      "venue": "TECNOPUC",
+      "startDate": "2026-10-29",
+      "description": "Primeiro evento do estado com foco em risco humano e segurança da informação.",
+      "links": {
+        "site": "https://www.sympla.com.br/evento/human-risk-day-2026/3560506",
+        "tickets": "https://www.sympla.com.br/evento/human-risk-day-2026/3560506"
+      }
+    },
+    {
+      "name": "MBConf 2026.2",
+      "calendarLabel": "MBConf 2026.2",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "Butantã",
+      "startDate": "2026-10-30",
+      "description": "Evento presencial e gratuito para explorar a cibersegurança de forma prática.",
+      "links": {
+        "site": "https://www.even3.com.br/mbconf-2026-2-789686/",
+        "tickets": "https://www.even3.com.br/mbconf-2026-2-789686/",
+        "instagram": "https://www.instagram.com/%7B%7BviewModel.evento.instagramEvento%7D%7D"
+      }
+    },
+    {
+      "name": "FatecSeg 2026 – Congresso de Segurança da Informação",
+      "calendarLabel": "FatecSeg 2026",
+      "type": "conference",
+      "city": "Santana de Parnaíba",
+      "state": "sp",
+      "lat": -23.4439,
+      "lon": -46.9178,
+      "venue": "FATEC Santana de Parnaíba",
+      "startDate": "2026-11-06",
+      "endDate": "2026-11-10",
+      "description": "Congresso de Segurança da Informação reunindo palestras, CTF e trabalhos acadêmicos.",
+      "links": {
+        "site": "https://www.even3.com.br/fatecseg-2026-779017/",
+        "tickets": "https://www.even3.com.br/fatecseg-2026-779017/"
+      }
+    },
+    {
+      "name": "Nullbyte Security Conference 2026",
+      "calendarLabel": "Nullbyte",
+      "type": "conference",
+      "city": "Salvador",
+      "state": "ba",
+      "lat": -12.9718,
+      "lon": -38.5011,
+      "venue": "Saladearte Cinema do Museu",
+      "startDate": "2026-11-07",
+      "logo": "images/events/nullbyte.png",
+      "description": "Conferência de segurança ofensiva organizada pela comunidade baiana.",
+      "links": {
+        "site": "https://www.nullbyte-con.org/",
+        "tickets": "https://www.sympla.com.br/evento/nullbyte-security-conference-2026/3385269",
+        "facebook": "https://www.facebook.com/nullbytecon/"
+      }
+    },
+    {
+      "name": "Security BSides Brasília 2026",
+      "calendarLabel": "BSides Brasília",
+      "type": "conference",
+      "city": "Brasília",
+      "state": "df",
+      "lat": -15.7795,
+      "lon": -47.9297,
+      "startDate": "2026-11-14",
+      "description": "Edição brasiliense da conferência comunitária Security BSides.",
+      "links": {
+        "instagram": "https://www.instagram.com/bsidesbsb/"
+      }
+    },
+    {
+      "name": "Por que a Liderança executiva é decisiva na Cibersegurança?",
+      "calendarLabel": "Liderança Cyber",
+      "type": "meetup",
+      "city": "São Luís",
+      "state": "ma",
+      "lat": -2.5387,
+      "lon": -44.2825,
+      "venue": "Lusitana Mall, Loja 02",
+      "startDate": "2026-11-26",
+      "description": "Palestra presencial sobre liderança executiva na cibersegurança em São Luís.",
+      "links": {
+        "site": "https://www.sympla.com.br/evento/por-que-a-lideranca-executiva-e-decisiva-na-ciberseguranca/3609586",
+        "tickets": "https://www.sympla.com.br/evento/por-que-a-lideranca-executiva-e-decisiva-na-ciberseguranca/3609586"
+      }
+    },
+    {
+      "name": "Itec Day 2026",
+      "calendarLabel": "Itec Day 2026",
+      "type": "conference",
+      "city": "Maceió",
+      "state": "al",
+      "lat": -9.666,
+      "lon": -35.735,
+      "venue": "Local a definir",
+      "startDate": "2026-11-27",
+      "description": "Encontro sobre Segurança da Informação, cibersegurança e proteção de dados em Maceió.",
+      "links": {
+        "site": "https://baiaotech.org/eventos/itec-day-maceio-2026/"
+      }
+    },
+    {
+      "name": "BHack 2026",
+      "calendarLabel": "BHack",
+      "type": "conference",
+      "city": "Belo Horizonte",
+      "state": "mg",
+      "lat": -19.9102,
+      "lon": -43.9266,
+      "venue": "Befly Minascentro — Rua dos Guajajaras, 1022, Centro",
+      "startDate": "2026-11-28",
+      "endDate": "2026-11-29",
+      "logo": "images/events/bhack.png",
+      "description": "Conferência de segurança da informação e cultura hacker de Minas Gerais.",
+      "links": {
+        "site": "https://www.bhack.com.br/",
+        "tickets": "https://www.sympla.com.br/evento/bhack-conference-2026/3376844",
+        "linkedin": "https://br.linkedin.com/company/bhack"
+      }
+    },
+    {
+      "name": "Security Leaders Premiação 2026",
+      "calendarLabel": "SL Premiação",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "Bourbon Street Music Club",
+      "startDate": "2026-12-11",
+      "description": "Security Leaders Premiação 2026 no Bourbon Street Music Club em São Paulo.",
+      "links": {
+        "site": "https://securityleaders.com.br/",
+        "youtube": "https://www.youtube.com/@TVSecurity"
+      }
+    },
+    {
+      "name": "DPOday 2027",
+      "calendarLabel": "DPOday 2027",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "Cubo Itaú, São Paulo",
+      "startDate": "2027-01-28",
+      "description": "O DPOday 2027 chega à 5ª edição com foco na Governança de Dados na Era dos Agentes de IA."
+    },
+    {
+      "name": "SecOps Summit 2027",
+      "calendarLabel": "SecOps Summit",
+      "type": "conference",
+      "city": "Porto Alegre",
+      "state": "rs",
+      "lat": -30.0318,
+      "lon": -51.2065,
+      "venue": "Centro de Eventos da FIERGS",
+      "startDate": "2027-03-02",
+      "endDate": "2027-03-04",
+      "description": "Feira Internacional de Segurança Digital e Operações de TI.",
+      "links": {
+        "site": "https://secopssummit.com.br/",
+        "tickets": "https://sigevent.pro/ard/ingressos/br/562/inicial",
+        "youtube": "https://www.youtube.com/@SecOpsTV"
+      }
+    },
+    {
+      "name": "CybersecGO 2027",
+      "calendarLabel": "CybersecGO 2027",
+      "type": "conference",
+      "city": "Goiânia",
+      "state": "go",
+      "lat": -16.6864,
+      "lon": -49.2643,
+      "venue": "Centro de Convenções de Goiânia — Auditório Lago Azul",
+      "startDate": "2027-05-06",
+      "endDate": "2027-05-07",
+      "description": "O maior congresso de cibersegurança do Centro-Oeste.",
+      "links": {
+        "site": "https://cybersecgo.com.br/",
+        "tickets": "https://www.sympla.com.br/evento/cybersecgo-2027/3533715"
+      }
+    },
+    {
+      "name": "CyberSecFest Belo Horizonte 2027",
+      "calendarLabel": "CyberSecFest BH",
+      "type": "conference",
+      "city": "Belo Horizonte",
+      "state": "mg",
+      "lat": -19.9102,
+      "lon": -43.9266,
+      "venue": "Mercado de Origem",
+      "startDate": "2027-06-01",
+      "description": "Movimento que conecta C-Levels, CISOs e líderes de tecnologia em cibersegurança.",
+      "links": {
+        "site": "https://www.sympla.com.br/evento/cybersecfest-belo-horizonte-edicao-2027/3223541",
+        "tickets": "https://www.sympla.com.br/evento/cybersecfest-belo-horizonte-edicao-2027/3223541"
+      }
+    }
+  ]
+}

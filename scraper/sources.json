@@ -1,0 +1,36 @@
+{
+  "_sobre": "Fontes do coletor (scraper/run.mjs). {ano} e {proximo} viram o ano corrente e o seguinte. 'searches' roda em rodízio no Tavily, 'searchesPerRun' por dia (10/dia ≈ 300 dos 1.000 créditos grátis do mês). 'pages' são sites relidos sempre (agendas, sites oficiais que ainda não estão no mapa); os sites e ingressos dos eventos futuros do data/events.json entram sozinhos. 'listings' são páginas de listagem com JSON-LD (ItemList de Event), cada item vira uma pista.",
+  "searchesPerRun": 10,
+  "searches": [
+    { "query": "conferência de segurança da informação presencial {ano} Brasil" },
+    { "query": "evento hacker presencial Brasil {ano}" },
+    { "query": "Security BSides Brasil {ano}" },
+    { "query": "Security BSides Brasil {proximo}" },
+    { "query": "CTF presencial Brasil {ano} competição de hacking" },
+    { "query": "conferência cibersegurança Nordeste {ano} Recife Salvador Fortaleza" },
+    { "query": "conferência segurança da informação Sul {ano} Porto Alegre Curitiba Florianópolis" },
+    { "query": "conferência segurança da informação Norte Centro-Oeste {ano} Manaus Belém Goiânia" },
+    { "query": "evento segurança ofensiva pentest Brasil {ano}" },
+    { "query": "OWASP chapter Brasil meetup presencial {ano}" },
+    { "query": "DEF CON Group Brasil encontro {ano}" },
+    { "query": "Roadsec {ano}" },
+    { "query": "H2HC Hackers to Hackers Conference {ano}" },
+    { "query": "CryptoRave {ano}" },
+    { "query": "conferência de segurança da informação {proximo} Brasil" },
+    { "query": "conferência segurança cibernética Brasília {ano}" },
+    { "query": "evento cibersegurança Belo Horizonte Rio de Janeiro {ano}" },
+    { "query": "workshop segurança da informação presencial {ano}" },
+    { "query": "conferência segurança da informação {ano}", "includeDomains": ["sympla.com.br"] },
+    { "query": "hacker conference cibersegurança {ano}", "includeDomains": ["sympla.com.br"] },
+    { "query": "segurança da informação congresso {ano}", "includeDomains": ["even3.com.br", "doity.com.br"] },
+    { "query": "cybersecurity conference Brazil {ano}", "includeDomains": ["eventbrite.com.br", "eventbrite.com"] }
+  ],
+  "completo": {
+    "_sobre": "Só na carga completa (--completo): uma busca por capital, além de todas as searches.",
+    "porCidade": "evento segurança da informação {cidade} {ano}",
+    "cidades": ["Rio Branco", "Maceió", "Macapá", "Manaus", "Salvador", "Fortaleza", "Brasília", "Vitória", "Goiânia", "São Luís", "Cuiabá", "Campo Grande", "Belo Horizonte", "Belém", "João Pessoa", "Curitiba", "Recife", "Teresina", "Rio de Janeiro", "Natal", "Porto Alegre", "Porto Velho", "Boa Vista", "Florianópolis", "São Paulo", "Aracaju", "Palmas"]
+  },
+  "excludeDomains": ["instagram.com", "facebook.com", "x.com", "twitter.com", "linkedin.com", "youtube.com", "tiktok.com", "wikipedia.org", "reddit.com"],
+  "pages": [],
+  "listings": []
+}
