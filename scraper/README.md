@@ -17,7 +17,10 @@ Acha eventos presenciais de segurança no Brasil e propõe as entradas novas do
    - a frase da data precisa aparecer na página e mostrar o dia do evento, sem ser prazo de
      ingresso (✅/⚠️ no PR); se o modelo trocar a página do evento, vale a página onde a frase está;
    - o evento tem que ser deste ano em diante (os que já passaram no ano vão para "Já rolou"),
-     não pode ser evento comercial de um fornecedor só e não pode estar no mapa nem no `ignore.json`.
+     não pode ser evento comercial de um fornecedor só e não pode estar no mapa nem no `ignore.json`;
+   - `organizer` diz quem organiza: `community` (comunidade, universidade, órgão público ou
+     associação de profissionais sem fins lucrativos; verde no mapa) ou `company` (empresa, mídia,
+     associação de empresas). Confira no PR, na coluna "Tipo · organização".
 5. **PR.** Um PR só, na branch `bot/eventos`, refeito a cada execução. Mudanças de data em eventos
    que já estão no mapa aparecem no texto do PR, sem alterar o arquivo.
 

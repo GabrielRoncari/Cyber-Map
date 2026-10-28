@@ -134,7 +134,11 @@
     const parts = event.city === state ? [event.city] : [event.city, state];
     return parts.filter(Boolean).join(" · ") || "Local a confirmar";
   };
-  const typeAndDates = (event) => [typeLabels[event.type] || event.type, formatDates(event)].filter(Boolean).join(" · ");
+  // Quem organiza: comunidade (verde-menta no mapa) ou empresa (o lilás de sempre).
+  // Evento sem o campo "organizer" conta como empresarial.
+  const orgLabels = { community: "Comunidade", company: "Empresarial" };
+  const orgPhrases = { community: " de comunidade", company: " empresarial" };
+  const typeAndDates = (event) => [typeLabels[event.type] || event.type, orgLabels[event.org], formatDates(event)].filter(Boolean).join(" · ");
   const venueIcon = `<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 12.6s4.2-3.9 4.2-7.1A4.2 4.2 0 0 0 2.8 5.5c0 3.2 4.2 7.1 4.2 7.1z"></path><circle cx="7" cy="5.5" r="1.5"></circle></svg>`;
 
   // Todos os eventos do JSON, em ordem de data.
@@ -142,7 +146,21 @@
   // O que a página mostra: o que ainda vai rolar mais o que já rolou neste ano.
   let shown = [];
   let counts = {};
-  const view = { sel: null, tab: "up", hoverState: null, hoverPin: null, hoverEvent: null };
+  const view = { sel: null, org: null, tab: "up", hoverState: null, hoverPin: null, hoverEvent: null };
+  // O filtro de organização vale para a página toda, como o de estado.
+  const orgOk = (event) => !view.org || event.org === view.org;
+  const orgPhrase = () => orgPhrases[view.org] || "";
+  const countByUf = (events) => events.reduce((acc, event) => {
+    if (event.uf) acc[event.uf] = (acc[event.uf] || 0) + 1;
+    return acc;
+  }, {});
+  const refreshCounts = () => { counts = countByUf(shown.filter(inYear).filter(orgOk)); };
+  // Quantos eventos de cada organização: decide a cor da bolinha e o anel dividido.
+  const orgMix = (events) => ({
+    community: events.filter((event) => event.org === "community").length,
+    company: events.filter((event) => event.org !== "community").length
+  });
+  const orgClass = (mix) => (mix.community && mix.company ? "is-mixed" : (mix.community ? "is-community" : "is-company"));
 
   /* ---------- Hash ---------- */
 
@@ -176,6 +194,7 @@
   let overlayItems = [];
   let ufItems = [];
   let pins = [];
+  let overlayRoot = null;
   let pinLayer = null;
   let groups = new Map();
   let lastCam = null;
@@ -283,10 +302,24 @@
   // no hover e abre o evento no clique; com vários, o hover abre a lista (mapPop).
   // O evento "principal" é o próximo que vai rolar ou, se todos já passaram, o
   // mais recente: é a prioridade da cidade nos grupos.
+  // Anel em volta de bolinha com vários eventos: a parte verde é a fração de
+  // comunidade, o resto é empresarial.
+  const splitRing = (r, mix) => {
+    const total = mix.community + mix.company;
+    const ring = svg("g", { class: "org-ring", "aria-hidden": "true" });
+    ring.append(svg("circle", { class: mix.company ? "ring-company" : "ring-community", r }));
+    if (mix.community && mix.company) {
+      const length = 2 * Math.PI * r;
+      ring.append(svg("circle", { class: "ring-community", r, transform: "rotate(-90)", "stroke-dasharray": `${(length * mix.community / total).toFixed(2)} ${length.toFixed(2)}` }));
+    }
+    return ring;
+  };
+
   const buildPins = (overlay) => {
     const layer = svg("g", { class: "map-pins" });
     const cities = new Map();
-    shown.forEach((event) => {
+    const cam = lastCam || camera();
+    shown.filter(orgOk).forEach((event) => {
       const path = statePaths[event.uf];
       if (!path) return;
       const key = `${event.uf}|${event.city}`;
@@ -311,9 +344,12 @@
       // À direita de x = 500 o rótulo vai para a esquerda, para não sair pelo litoral.
       const toLeft = at.x > 500;
 
-      const el = svg("g", { class: `pin${isUp ? " is-up" : ""}` });
+      const mix = orgMix(city.evs);
+      const el = svg("g", { class: `pin ${orgClass(mix)}${isUp ? " is-up" : ""}` });
+      // Nasce na posição certa: sem isso, a transição traria o pino do canto (0, 0).
+      el.style.transform = translate(at.x, at.y, cam);
       if (isUp) el.append(svg("circle", { class: "pin-pulse", r: 5 }));
-      if (multi) el.append(svg("circle", { class: "pin-multi", r: 7.2 }));
+      if (multi) el.append(splitRing(7.4, mix));
       el.append(svg("circle", { class: "pin-dot", r: isUp ? 4.6 : 3.4 }));
       el.append(svg("text", { class: "pin-label", x: toLeft ? -11 : 11, y: 3.6, "text-anchor": toLeft ? "end" : "start" }));
       const hit = svg("circle", { class: "pin-hit", r: 12, tabindex: 0, role: "button" });
@@ -355,6 +391,7 @@
 
     zoomLayer = svg("g", { class: "map-zoom" });
     const overlay = svg("g", { class: "map-overlay" });
+    overlayRoot = overlay;
     if (SHOW_GRATICULE) buildGraticule(zoomLayer, overlay);
     const halo = svg("g", { class: "map-halo", "aria-hidden": "true" });
     const statesLayer = svg("g", { class: "map-states" });
@@ -364,7 +401,6 @@
       path.setAttribute("class", "map-state");
       path.setAttribute("tabindex", "0");
       path.setAttribute("role", "button");
-      path.dataset.n = String(Math.min(counts[path.id] || 0, 2));
       statesLayer.append(path);
       onActivate(path, () => select(path.id));
       onHover(path, "hoverState", path.id);
@@ -402,9 +438,10 @@
     const isUp = members.some((pin) => pin.isUp);
     const sameUf = members.every((pin) => pin.uf === anchor.uf);
     const title = sameUf ? `${anchor.city} e região · ${anchor.uf.toUpperCase()}` : `${members.length} cidades`;
-    const el = svg("g", { class: `pin pin-group${isUp ? " is-up" : ""}` });
+    const mix = orgMix(events);
+    const el = svg("g", { class: `pin pin-group ${orgClass(mix)}${isUp ? " is-up" : ""}` });
     if (isUp) el.append(svg("circle", { class: "pin-pulse", r: 7 }));
-    el.append(svg("circle", { class: "group-ring", r: 13 }), svg("circle", { class: "group-dot", r: 9 }));
+    el.append(svg("circle", { class: "group-ring", r: 14.5 }), svg("circle", { class: "group-dot", r: 9 }), splitRing(10.6, mix));
     const count = svg("text", { class: "group-count", y: 3.3, "text-anchor": "middle" });
     count.textContent = events.length;
     const hit = svg("circle", {
@@ -463,7 +500,10 @@
       item.el.style.transform = `translate(${(item.x * s + tx).toFixed(2)}px, ${(item.y * s + ty).toFixed(2)}px)`;
     });
     mapRoot.classList.toggle("has-sel", Boolean(sel));
+    // A cor do estado e a sigla acesa seguem o filtro de organização.
+    ufItems.forEach((item) => item.el.classList.toggle("has-events", Boolean(counts[item.uf])));
     Object.entries(statePaths).forEach(([uf, path]) => {
+      path.dataset.n = String(Math.min(counts[uf] || 0, 2));
       path.classList.toggle("is-sel", uf === sel);
       path.setAttribute("aria-label", `${stateName(uf)}: ${countLabel(counts[uf] || 0)} em ${year}${uf === sel ? " (selecionado)" : ""}`);
     });
@@ -545,7 +585,7 @@
     node?.focus();
     popState.quiet = false;
   };
-  const popItem = (event, withCity) => `<li><button type="button" class="pop-ev${isPast(event) ? " is-past" : ""}" data-open="${escapeHtml(event.slug)}" data-hover="${escapeHtml(event.slug)}" data-city="${escapeHtml(event.cityKey)}">
+  const popItem = (event, withCity) => `<li><button type="button" class="pop-ev${event.org === "community" ? " is-community" : ""}${isPast(event) ? " is-past" : ""}" data-open="${escapeHtml(event.slug)}" data-hover="${escapeHtml(event.slug)}" data-city="${escapeHtml(event.cityKey)}">
       <span class="pop-dot" aria-hidden="true"></span><span class="pop-name">${escapeHtml(event.label)}</span><span class="pop-date">${event.startDate ? escapeHtml(shortDate(event.startDate)) : ""}</span>
       ${withCity ? `<span class="pop-city">${escapeHtml(event.city)}</span>` : ""}<span class="sr-only">, ${escapeHtml(formatDates(event))}</span>
     </button></li>`;
@@ -728,20 +768,21 @@
   }).join("");
 
   const emptyMarkup = (onUp, state) => {
+    const kind = orgPhrase();
     const text = onUp
-      ? (state ? `Nenhum evento futuro ${stateIn(state)}.` : "Nenhum evento futuro cadastrado.")
-      : (state ? `Nenhum evento passado ${stateIn(state)} em ${year}.` : `Nenhum evento passado em ${year}.`);
+      ? (state ? `Nenhum evento futuro${kind} ${stateIn(state)}.` : `Nenhum evento futuro${kind} cadastrado.`)
+      : (state ? `Nenhum evento passado${kind} ${stateIn(state)} em ${year}.` : `Nenhum evento passado${kind} em ${year}.`);
     return `<div class="empty">${escapeHtml(text)} Conhece algum? <a href="${escapeHtml(SUGGEST_URL)}">Manda pra gente</a>.</div>`;
   };
 
   const renderPanel = () => {
     const { sel } = view;
-    const pool = shown.filter((event) => !sel || event.uf === sel);
+    const pool = shown.filter((event) => (!sel || event.uf === sel) && orgOk(event));
     const upcoming = pool.filter((event) => !isPast(event));
     const past = pool.filter(isPast).reverse();
     const onUp = view.tab === "up";
     // Só reescreve quando muda, para o aria-live não repetir a mesma leitura.
-    setText(panelKicker, sel ? `Filtro · ${sel.toUpperCase()}` : `Agenda ${year}`);
+    setText(panelKicker, [sel ? `Filtro · ${sel.toUpperCase()}` : `Agenda ${year}`, orgLabels[view.org]].filter(Boolean).join(" · "));
     setText(panelTitle, sel ? stateName(sel) : "Todo o Brasil");
     panelClear.hidden = !sel;
     tabUp.setAttribute("aria-pressed", String(onUp));
@@ -802,7 +843,7 @@
 
   // O filtro de estado é o mesmo do mapa e da lista (view.sel).
   const cal = { month: today().slice(0, 7), mine: false };
-  const calPool = () => allEvents.filter((event) => event.startDate && (!cal.mine || saved.has(event.slug)) && (!view.sel || event.uf === view.sel));
+  const calPool = () => allEvents.filter((event) => event.startDate && (!cal.mine || saved.has(event.slug)) && (!view.sel || event.uf === view.sel) && orgOk(event));
 
   // Menu de estados (no lugar do <select>, cuja lista aberta não aceita CSS):
   // os estados com evento no calendário, com a contagem, mais o selecionado no
@@ -811,13 +852,15 @@
       <span class="cal-state-name">${escapeHtml(name)}</span><span class="cal-state-count" aria-label="${escapeHtml(countLabel(total))}">${total}</span>
     </button>`;
   const syncStateSelect = () => {
-    const dated = allEvents.filter((event) => event.startDate);
-    const perUf = dated.reduce((acc, event) => ({ ...acc, [event.uf]: (acc[event.uf] || 0) + 1 }), {});
+    const dated = allEvents.filter((event) => event.startDate && orgOk(event));
+    const perUf = countByUf(dated);
     const ufs = [...new Set([...dated.map((event) => event.uf), view.sel])]
       .filter((uf) => states[uf])
       .sort((a, b) => stateName(a).localeCompare(stateName(b), "pt-BR"));
-    if (calStateMenu.dataset.ufs !== ufs.join()) {
-      calStateMenu.dataset.ufs = ufs.join();
+    // A contagem muda com o filtro de organização: a chave inclui os números.
+    const menuKey = `${dated.length}|${ufs.map((uf) => `${uf}${perUf[uf] || 0}`).join()}`;
+    if (calStateMenu.dataset.ufs !== menuKey) {
+      calStateMenu.dataset.ufs = menuKey;
       calStateMenu.innerHTML = stateOption("", "Todos os estados", dated.length)
         + '<span class="cal-state-sep" aria-hidden="true"></span>'
         + ufs.map((uf) => stateOption(uf, stateName(uf), perUf[uf] || 0)).join("");
@@ -895,7 +938,7 @@
         cells += `<div class="${classes}" style="grid-column: ${index + 1}"><span class="cal-num"${iso === now ? ' aria-label="Hoje"' : ""}>${number}</span>${holiday ? `<span class="cal-holiday" title="${escapeHtml(holiday)}">${escapeHtml(holiday)}</span>` : ""}</div>`;
       }
       const bars = pieces.map(({ event, col, span, lane, cutStart, cutEnd }) => {
-        const classes = ["cal-event", isPast(event) && "is-past", saved.has(event.slug) && "is-saved", cutStart && "cut-start", cutEnd && "cut-end"].filter(Boolean).join(" ");
+        const classes = ["cal-event", event.org === "community" && "is-community", isPast(event) && "is-past", saved.has(event.slug) && "is-saved", cutStart && "cut-start", cutEnd && "cut-end"].filter(Boolean).join(" ");
         const detail = `${event.name}, ${formatDates(event)}, ${placeShort(event)}${saved.has(event.slug) ? ", na minha agenda" : ""}`;
         return `<button type="button" class="${classes}" style="grid-column: ${col + 1} / span ${span}; grid-row: ${lane + 2}" data-open="${escapeHtml(event.slug)}" data-hover="${escapeHtml(event.slug)}" data-city="${escapeHtml(event.cityKey)}"><span class="cal-ev-name">${escapeHtml(event.label)}</span><span class="cal-ev-uf" aria-hidden="true">${escapeHtml(event.uf.toUpperCase())}</span><span class="sr-only">: ${escapeHtml(detail)}</span></button>`;
       }).join("");
@@ -912,7 +955,7 @@
       const next = pool.find((event) => event.startDate > monthEnd);
       const previous = [...pool].reverse().find((event) => lastDay(event) < first);
       const jump = next || previous;
-      hint = `Nenhum evento${cal.mine ? " salvo" : ""}${escapeHtml(where)} em ${monthNames[m - 1]} de ${y}.`;
+      hint = `Nenhum evento${orgPhrase()}${cal.mine ? " salvo" : ""}${escapeHtml(where)} em ${monthNames[m - 1]} de ${y}.`;
       if (jump) hint += ` <button type="button" class="link-btn" data-goto="${jump.startDate.slice(0, 7)}">${next ? "Próximo" : "Último"}: ${escapeHtml(jump.label)}, ${escapeHtml(formatDates(jump))} ${next ? "→" : "←"}</button>`;
       else if (!cal.mine) hint += ` Conhece algum? <a href="${escapeHtml(SUGGEST_URL)}">Manda pra gente</a>.`;
     }
@@ -994,6 +1037,28 @@
     renderHot();
   };
 
+  // Filtro de organização (na legenda do mapa): refaz os pinos só com o que
+  // passa no filtro e redesenha a página toda.
+  const orgButtons = [...document.querySelectorAll("[data-org]")];
+  const rebuildPins = () => {
+    if (!mapRoot || !overlayRoot) return;
+    pinLayer?.remove();
+    hotLayer?.remove();
+    hotCopies.clear();
+    groups = new Map();
+    overlayItems = overlayItems.filter((item) => !pins.includes(item));
+    buildPins(overlayRoot);
+  };
+  const setOrg = (org) => {
+    view.org = org || null;
+    orgButtons.forEach((button) => button.setAttribute("aria-pressed", String((button.dataset.org || null) === view.org)));
+    refreshCounts();
+    closePop();
+    rebuildPins();
+    render();
+  };
+  orgButtons.forEach((button) => button.addEventListener("click", () => setOrg(button.dataset.org)));
+
   // Clicar no estado selecionado limpa o filtro; keep = true seleciona sem alternar.
   // Estado só com eventos passados abre direto na aba "Já rolou".
   const select = (uf, { keep = false } = {}) => {
@@ -1002,7 +1067,7 @@
       view.tab = "up";
       view.hoverState = null;
     } else {
-      const local = shown.filter((event) => event.uf === uf);
+      const local = shown.filter((event) => event.uf === uf && orgOk(event));
       view.sel = uf;
       view.tab = local.length && !local.some((event) => !isPast(event)) ? "past" : "up";
     }
@@ -1240,15 +1305,14 @@
     const data = await fetch("data/events.json").then((response) => (response.ok ? response.json() : { events: [] })).catch(() => ({ events: [] }));
     allEvents = (data.events || []).map((event) => {
       const uf = event.state?.toLowerCase() || "";
-      return { ...event, uf, slug: eventSlug(event), label: event.calendarLabel || event.name, cityKey: `${uf}|${event.city}` };
+      const org = event.organizer === "community" ? "community" : "company";
+      return { ...event, uf, org, slug: eventSlug(event), label: event.calendarLabel || event.name, cityKey: `${uf}|${event.city}` };
     }).sort((a, b) => (a.startDate || "9999").localeCompare(b.startDate || "9999"));
     shown = allEvents.filter((event) => !isPast(event) || inYear(event));
-    counts = shown.filter(inYear).reduce((acc, event) => {
-      if (event.uf) acc[event.uf] = (acc[event.uf] || 0) + 1;
-      return acc;
-    }, {});
+    refreshCounts();
+    // Os números do topo são do site inteiro, não mudam com o filtro de organização.
     $("#stat-total").textContent = shown.filter(inYear).length;
-    $("#stat-ufs").textContent = Object.keys(counts).length;
+    $("#stat-ufs").textContent = Object.keys(countByUf(shown.filter(inYear))).length;
     $("#stat-upcoming").textContent = shown.filter((event) => !isPast(event)).length;
 
     const { state, event } = parseHash();

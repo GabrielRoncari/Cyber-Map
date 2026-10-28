@@ -13,6 +13,11 @@
   --lavender: #B9A8F5;    /* kickers, links, foco */
   --lavender-2: #D9CEFF;  /* hover de link */
   --pin: #EFE9FF;
+  /* Eventos de comunidade (sem fim comercial): verde-menta. Os empresariais ficam no lilás/branco de --pin. */
+  --community: #5EE3B5;
+  --community-ring: #12876B;
+  --community-past: #3FA889;
+  --community-bar: #127A63; /* barra do calendário: texto branco a 5.3:1 */
   --accent: #6E55CF;      /* botão primário, estado selecionado, borda de pino futuro (texto branco = 5.4:1) */
   --state-0: #191523; --state-1: #2B2346; --state-2: #3D3168;          /* eventos no ano: 0 / 1 / 2+ */
   --state-0-hover: #241E33; --state-n-hover: #4B3D80;
@@ -227,6 +232,8 @@ h2 { font-size: 21px; line-height: 1.2; font-weight: 600; letter-spacing: -0.015
 .pop-ev.is-past { color: var(--text-2); }
 .pop-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--pin); box-shadow: 0 0 0 2px var(--accent); }
 .pop-ev.is-past .pop-dot { background: transparent; box-shadow: inset 0 0 0 1.4px var(--text-3); }
+.pop-ev.is-community .pop-dot { background: var(--community); box-shadow: 0 0 0 2px var(--community-ring); }
+.pop-ev.is-community.is-past .pop-dot { background: transparent; box-shadow: inset 0 0 0 1.4px var(--community-past); }
 .pop-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .pop-date { font: 500 10.5px var(--font-mono); letter-spacing: .06em; color: var(--text-2); }
 .pop-city { grid-column: 2 / -1; font-size: 11.5px; color: var(--text-3); }
@@ -252,7 +259,23 @@ h2 { font-size: 21px; line-height: 1.2; font-weight: 600; letter-spacing: -0.015
 .swatch-0 { background: var(--state-0); }
 .swatch-1 { background: var(--state-1); }
 .swatch-2 { background: var(--state-2); border-color: var(--line-hot); }
-.legend-pin-up { fill: var(--pin); stroke: var(--accent); stroke-width: 2; }
+.legend-pin-up { fill: var(--text-soft); }
+/* Filtro de quem organiza, dentro da legenda: a cor do ponto é a da bolinha. */
+.map-org {
+  display: flex; gap: 3px; padding: 3px; border-radius: 8px;
+  background: var(--bg); border: 1px solid var(--line-panel);
+}
+.map-org-btn {
+  height: 28px; padding: 0 9px; border: 0; border-radius: 6px;
+  background: transparent; color: var(--text-2); cursor: pointer;
+  font: 500 12px var(--font-sans); white-space: nowrap;
+  display: flex; align-items: center; gap: 6px;
+}
+.map-org-btn:hover { color: #FFFFFF; }
+.map-org-btn[aria-pressed="true"] { background: var(--tab-active); box-shadow: inset 0 0 0 1px var(--line-hot); color: #FFFFFF; }
+.org-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.org-dot-community { background: var(--community); box-shadow: 0 0 0 1.5px var(--community-ring); }
+.org-dot-company { background: var(--pin); box-shadow: 0 0 0 1.5px var(--accent); }
 .legend-pin-past { fill: var(--surface-0); stroke: var(--text-3); stroke-width: 1.4; }
 
 /* SVG: o grupo .map-zoom recebe a câmera; o .map-overlay não escala, só acompanha. */
@@ -312,9 +335,16 @@ h2 { font-size: 21px; line-height: 1.2; font-weight: 600; letter-spacing: -0.015
 }
 .pin.is-dim .pin-pulse { display: none; }
 .pin-ring { fill: var(--pin-hot-fill); stroke: var(--text); stroke-width: 1.2px; }
-.pin-multi { fill: none; stroke: var(--text-3); stroke-width: 1px; }
 .pin-dot { fill: var(--surface-0); stroke: var(--text-3); stroke-width: 1.4px; }
 .pin.is-up .pin-dot { fill: var(--pin); stroke: var(--accent); stroke-width: 2px; }
+.pin.is-community.is-up .pin-dot { fill: var(--community); stroke: var(--community-ring); }
+.pin.is-community:not(.is-up) .pin-dot { stroke: var(--community-past); }
+.pin.is-community .pin-pulse { stroke: var(--community); }
+/* Anel de quem tem vários eventos: a parte verde é a fração de comunidade. */
+.org-ring circle { fill: none; stroke-width: 1.6px; }
+.ring-company { stroke: var(--lavender); }
+.ring-community { stroke: var(--community); }
+.pin-group .org-ring circle { stroke-width: 2.4px; }
 .pin-label {
   display: none;
   font: 500 10.5px var(--font-mono); letter-spacing: .03em; fill: var(--text);
@@ -326,10 +356,12 @@ h2 { font-size: 21px; line-height: 1.2; font-weight: 600; letter-spacing: -0.015
 /* Pino que entrou num grupo some; quem responde é o marcador do grupo. */
 .pin.is-grouped { opacity: 0; }
 .pin.is-grouped .pin-hit { pointer-events: none; }
-.group-dot { fill: var(--surface-0); stroke: var(--text-3); stroke-width: 1.4px; }
-.pin-group.is-up .group-dot { fill: var(--pin); stroke: var(--accent); stroke-width: 2px; }
+.group-dot { fill: var(--surface-0); stroke: none; }
+.pin-group.is-up .group-dot { fill: var(--pin); }
+.pin-group.is-community.is-up .group-dot { fill: var(--community); }
 .group-count { font: 700 9.5px var(--font-mono); fill: var(--text-2); pointer-events: none; }
 .pin-group.is-up .group-count { fill: var(--accent); }
+.pin-group.is-community.is-up .group-count { fill: #08392D; }
 .group-ring { display: none; fill: var(--pin-hot-fill); stroke: var(--text); stroke-width: 1.2px; }
 .pin-group.is-hot .group-ring { display: inline; }
 .pin-hit { fill: transparent; cursor: pointer; }
@@ -586,6 +618,9 @@ h2 { font-size: 21px; line-height: 1.2; font-weight: 600; letter-spacing: -0.015
 .cal-ev-uf { flex-shrink: 0; margin-left: auto; font: 500 10px/1 var(--font-mono); letter-spacing: .08em; opacity: .8; }
 .cal-event.is-saved .cal-ev-name::before { content: "★ "; }
 .cal-event.is-past { background: var(--surface-3); border-color: var(--line-3); color: var(--text-2); }
+/* Comunidade em verde, como no mapa; já passado fica cinza com a borda verde. */
+.cal-event.is-community:not(.is-past) { background: var(--community-bar); border-color: var(--community-bar); }
+.cal-event.is-community.is-past { border-left: 3px solid var(--community-past); }
 /* Evento que atravessa a semana: a barra continua reta na borda. */
 .cal-event.cut-start { margin-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; }
 .cal-event.cut-end { margin-right: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; }
@@ -684,18 +719,25 @@ h2 { font-size: 21px; line-height: 1.2; font-weight: 600; letter-spacing: -0.015
   .modal { width: calc(100% - 32px); }
   .modal-card { max-height: calc(100vh - 32px); padding: 20px; }
 
-  /* No celular o quadro segue a proporção do viewBox (676x700), não a paisagem
-     do desktop: o país fica ~20% maior. Os overlays encolhem para não cobri-lo. */
-  .map-card { aspect-ratio: 676 / 700; }
+  /* No celular o mapa segue a proporção do viewBox (676x700), não a paisagem do
+     desktop: o país fica ~20% maior. Embaixo dele fica uma faixa só para a
+     legenda com o filtro de organização, que por cima cobriria o Sul. */
+  .map-card { aspect-ratio: auto; height: calc((100vw - 32px) * 700 / 676 + 96px); }
+  .map-host { bottom: 96px; height: auto; }
   .map-corner { top: 10px; }
   .map-corner-start { left: 10px; }
-  /* Embaixo, ao lado da legenda: em cima ela batia no "← Brasil" + rótulo do filtro. */
-  .map-corner-end { top: auto; bottom: 10px; right: 10px; }
+  /* Embaixo, logo acima da faixa da legenda: em cima batia no "← Brasil" + rótulo do filtro. */
+  .map-corner-end { top: auto; bottom: 104px; right: 10px; }
   .map-readout { font-size: 11px; padding: 6px 9px; gap: 8px; }
   .map-chip { padding: 6px 9px; font-size: 10px; letter-spacing: .08em; }
   .map-back { height: 32px; }
-  .map-legend { left: 10px; bottom: 10px; padding: 8px 10px; gap: 8px; }
+  .map-legend {
+    left: 10px; right: 10px; bottom: 10px; padding: 8px 10px;
+    flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;
+  }
   .map-legend-title { display: none; }
+  .map-org { flex: 1 1 100%; }
+  .map-org-btn { flex: 1; justify-content: center; padding: 0 6px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -107,6 +107,12 @@
             <span><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><circle class="legend-pin-up" cx="6" cy="6" r="4"></circle></svg>Próximo</span>
             <span><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><circle class="legend-pin-past" cx="6" cy="6" r="3.4"></circle></svg>Já rolou</span>
           </div>
+          <!-- A cor da bolinha diz quem organiza; os botões filtram a página toda. -->
+          <div class="map-org" role="group" aria-label="Quem organiza">
+            <button type="button" class="map-org-btn" data-org="" aria-pressed="true">Todos</button>
+            <button type="button" class="map-org-btn" data-org="community" aria-pressed="false"><span class="org-dot org-dot-community" aria-hidden="true"></span>Comunidade</button>
+            <button type="button" class="map-org-btn" data-org="company" aria-pressed="false"><span class="org-dot org-dot-company" aria-hidden="true"></span>Empresarial</button>
+          </div>
         </div>
       </section>
 

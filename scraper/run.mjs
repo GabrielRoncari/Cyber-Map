@@ -180,6 +180,7 @@ const extractSchema = {
           securityEvent: { type: "BOOLEAN" },
           inPerson: { type: "BOOLEAN" },
           vendorEvent: { type: "BOOLEAN" },
+          organizer: { type: "STRING", enum: ["community", "company"] },
           country: { type: "STRING" },
           city: { type: "STRING" },
           state: { type: "STRING" },
@@ -190,7 +191,7 @@ const extractSchema = {
           links: { type: "OBJECT", nullable: true, properties: Object.fromEntries(linkKeys.map((key) => [key, { type: "STRING", nullable: true }])) },
           evidence: { type: "STRING" }
         },
-        required: ["page", "name", "calendarLabel", "type", "securityEvent", "inPerson", "vendorEvent", "country", "city", "state", "startDate", "description", "evidence"]
+        required: ["page", "name", "calendarLabel", "type", "securityEvent", "inPerson", "vendorEvent", "organizer", "country", "city", "state", "startDate", "description", "evidence"]
       }
     }
   },
@@ -204,6 +205,7 @@ Regras:
 - securityEvent = true só se o tema central for segurança da informação, cibersegurança, hacking, CTF ou cultura hacker. Feira de TI genérica, segurança do trabalho ou patrimonial = false.
 - inPerson = true se há local físico (híbrido conta); só online = false. country = "BR" se for no Brasil.
 - vendorEvent = true se for evento comercial de uma empresa só sobre os próprios produtos (roadshow, lançamento, demo de fabricante). Conferência com vários palestrantes e empresas = false, mesmo com patrocinador.
+- organizer = "community" se quem organiza é comunidade/voluntários, hackerspace, capítulo (BSides, OWASP, DEF CON Group), universidade/instituto/escola, sociedade científica, órgão público ou associação de profissionais sem fins lucrativos; "company" se é empresa, consultoria, veículo de mídia, plataforma de cursos ou associação de empresas (ex.: Febraban, câmaras de comércio).
 - Eventos que já aconteceram neste ano também valem: devolva-os normalmente.
 - Datas em AAAA-MM-DD. endDate só se durar mais de um dia (último dia, inclusivo); senão null.
 - A data é a do evento acontecer. Prazo de ingresso, lote, preço promocional, inscrição ou chamada de palestras NÃO é data do evento. Se a página não diz o dia do evento (só "Maio 2027", por exemplo), não invente: deixe esse evento de fora.
@@ -312,10 +314,10 @@ const cell = (text) => String(text).replace(/\|/g, "\\|").replace(/\s+/g, " ");
 const lines = [];
 if (additions.length) {
   lines.push(`## ${additions.length} ${additions.length === 1 ? "evento novo" : "eventos novos"} para revisar`, "");
-  lines.push("| Evento | Datas | Local | Tipo | Fonte | Data conferida |", "|---|---|---|---|---|---|");
+  lines.push("| Evento | Datas | Local | Tipo · organização | Fonte | Data conferida |", "|---|---|---|---|---|---|");
   additions.forEach(({ event, source, verified, warning, evidence }) => {
     const check = verified ? `✅ “${cell(evidence)}”` : `⚠️ ${warning || "trecho não achado na página"}${evidence ? `: “${cell(evidence)}”` : ""}`;
-    lines.push(`| ${cell(event.name)} | ${formatDates(event)} | ${cell(event.city)} · ${event.state.toUpperCase()} | ${event.type} | [${hostOf(source)}](${source}) | ${check} |`);
+    lines.push(`| ${cell(event.name)} | ${formatDates(event)} | ${cell(event.city)} · ${event.state.toUpperCase()} | ${event.type} · ${event.organizer === "community" ? "comunidade" : "empresa"} | [${hostOf(source)}](${source}) | ${check} |`);
   });
   lines.push("", "Datas, cidade, descrição e links vêm da IA: confira na fonte antes de aprovar. Os logos não são preenchidos.");
   lines.push("Para recusar um evento de vez, ponha o nome dele em `scraper/ignore.json` na branch principal: o próximo run tira ele daqui. Editar este PR não basta, porque o coletor refaz a branch todo dia.");
