@@ -103,6 +103,8 @@ const similarity = (a, b, drop) => {
 // Janeiro" não são o mesmo evento.
 export const sameEvent = (a, b) => {
   if (a.state !== b.state) return false;
+  // Nome igual vale mesmo quando só sobra número e palavra genérica ("8.8 Brasil 2026").
+  if (slugify(a.name) === slugify(b.name) && Math.abs(daysBetween(a.startDate, b.startDate)) <= 45) return true;
   const cityWords = new Set([a.city, b.city].flatMap((city) => normalize(city || "").split(" ")));
   const score = similarity(a.name, b.name, cityWords);
   if (a.startDate === b.startDate && score > 0) return true;

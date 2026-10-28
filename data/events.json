@@ -1,8 +1,8 @@
 {
   "events": [
     {
-      "name": "Oxum Sec",
-      "calendarLabel": "Oxum Sec",
+      "name": "Oxum Hacker Conference 2026",
+      "calendarLabel": "Oxum Hacker Conf",
       "type": "conference",
       "city": "Salvador",
       "state": "ba",
@@ -11,8 +11,35 @@
       "startDate": "2026-01-31",
       "description": "Novo evento que surge nesse ano na capital baiana, organizado pelo pessoal do Raul Hacker Clube.",
       "links": {
-        "site": "https://axesec.cc/pages/oxum/"
+        "site": "https://axesec.cc/pages/oxum/",
+        "tickets": "https://www.sympla.com.br/evento/oxum-hacker-conference/3212017"
       }
+    },
+    {
+      "name": "Privacy Day 2026",
+      "calendarLabel": "Privacy Day 2026",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "CCBC",
+      "startDate": "2026-02-03",
+      "description": "Evento presencial de privacidade e proteção de dados no CCBC.",
+      "links": {
+        "tickets": "https://www.sympla.com.br/evento/privacy-day-2026/3257340"
+      }
+    },
+    {
+      "name": "OSINT & Cachaça 2026",
+      "calendarLabel": "OSINT & Cachaça",
+      "type": "meetup",
+      "city": "Porto Alegre",
+      "state": "rs",
+      "lat": -30.0318,
+      "lon": -51.2065,
+      "startDate": "2026-02-25",
+      "description": "Encontro de OSINT na véspera da Digital Investigation Conference Brazil, em Porto Alegre."
     },
     {
       "name": "CTF SHC 2026",
@@ -89,6 +116,22 @@
       }
     },
     {
+      "name": "CYBER Trends V3 - Campinas",
+      "calendarLabel": "CYBER Trends V3",
+      "type": "meetup",
+      "city": "Campinas",
+      "state": "sp",
+      "lat": -22.9053,
+      "lon": -47.0659,
+      "venue": "Escola SENAI Prof. Euryclides de Jesus Zerbini",
+      "startDate": "2026-03-10",
+      "description": "Encontro semestral de CISOs e especialistas, com painéis sobre IA e biometria, excesso de ferramentas e desenvolvimento de software.",
+      "links": {
+        "site": "https://www.cisoadvisor.com.br/2026-eventos-cyber-trends/",
+        "tickets": "https://www.sympla.com.br/evento/cyber-trends-v3-campinas/3279124"
+      }
+    },
+    {
       "name": "SecOps Summit 2026",
       "calendarLabel": "SecOps Summit",
       "type": "conference",
@@ -101,6 +144,37 @@
       "description": "Grande evento de cibersegurança em Porto Alegre, com grande quantidade de participantes e estrutura caprichada.",
       "links": {
         "site": "https://www.secopssummit.com.br/"
+      }
+    },
+    {
+      "name": "Febraban SEC 2026",
+      "calendarLabel": "Febraban SEC",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "Av. Dr. Mário Vilas Boas Rodrigues, 387, Santo Amaro",
+      "startDate": "2026-03-18",
+      "endDate": "2026-03-19",
+      "description": "3ª edição do congresso de prevenção a fraudes, segurança cibernética e bancária da Febraban.",
+      "links": {
+        "site": "https://febrabantech.febraban.org.br/febrabansec"
+      }
+    },
+    {
+      "name": "Hacking na Web Day Brasília 2026",
+      "calendarLabel": "HNWD Brasília",
+      "type": "conference",
+      "city": "Brasília",
+      "state": "df",
+      "lat": -15.7795,
+      "lon": -47.9297,
+      "venue": "Hotel Grand Bittar",
+      "startDate": "2026-03-21",
+      "description": "Edição brasiliense do evento técnico e de networking da comunidade Hacking na Web.",
+      "links": {
+        "tickets": "https://www.sympla.com.br/evento/hnwd-brasilia-2026/3228889"
       }
     },
     {
@@ -126,6 +200,21 @@
       "description": "Evento despretencioso organizado pelo pessoal do Laboratório Hacker de Campinas.",
       "links": {
         "site": "https://tosconf.lhc.net.br/"
+      }
+    },
+    {
+      "name": "OWASP Belém - Cyber Security Day 2026",
+      "calendarLabel": "OWASP Belém CSD",
+      "type": "meetup",
+      "city": "Belém",
+      "state": "pa",
+      "lat": -1.4554,
+      "lon": -48.4898,
+      "venue": "Auditório Estácio, Av. Gov. José Malcher, 1148",
+      "startDate": "2026-03-28",
+      "description": "Encontro do capítulo OWASP Belém sobre incidentes, crises e computação forense, no Auditório Estácio.",
+      "links": {
+        "tickets": "https://www.sympla.com.br/evento/owasp-belem-cyber-security-day/3357822"
       }
     },
     {
@@ -177,6 +266,67 @@
       }
     },
     {
+      "name": "5º Fórum de Proteção de Dados do Interior Paulista",
+      "calendarLabel": "Fórum Dados Interior",
+      "type": "conference",
+      "city": "Ribeirão Preto",
+      "state": "sp",
+      "lat": -21.1699,
+      "lon": -47.8099,
+      "venue": "Wyndham Garden Ribeirao Preto Convention",
+      "startDate": "2026-04-17",
+      "description": "Fórum presencial sobre proteção de dados no interior paulista.",
+      "links": {
+        "tickets": "https://www.sympla.com.br/evento/5-forum-de-protecao-de-dados-do-interior-paulista/3221521"
+      }
+    },
+    {
+      "name": "GHC - GYN Hacker Conference 2026",
+      "calendarLabel": "GHC 2026",
+      "type": "conference",
+      "city": "Goiânia",
+      "state": "go",
+      "lat": -16.6864,
+      "lon": -49.2643,
+      "startDate": "2026-04-18",
+      "description": "Primeira edição da GYN Hacker Conference, da comunidade GYNSec, com talks de malware, mobile, iOS, Web3 e pentest.",
+      "links": {
+        "site": "https://gynsec.com.br/"
+      }
+    },
+    {
+      "name": "IAM Tech Day São Paulo 2026",
+      "calendarLabel": "IAM Tech Day 2026",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "Transamerica Expo Center",
+      "startDate": "2026-04-22",
+      "endDate": "2026-04-23",
+      "description": "Conferência focada em gestão de identidades e acessos (IAM), em dois dias no Transamerica Expo Center.",
+      "links": {
+        "site": "https://iamtechday.org/en/eventos/iam-tech-day-sao-paulo-abril-2026"
+      }
+    },
+    {
+      "name": "5º Encontro Guardiões Digitais - Edição Florianópolis 2026",
+      "calendarLabel": "Guardiões Digit. SC",
+      "type": "meetup",
+      "city": "Florianópolis",
+      "state": "sc",
+      "lat": -27.5945,
+      "lon": -48.5477,
+      "venue": "Sala ACATE, Passeio Primavera, SC-401, 4100, Saco Grande",
+      "startDate": "2026-04-23",
+      "description": "Encontro presencial de segurança da informação organizado pela Introduce, com palestras, painel e debate sobre ISO 27001.",
+      "links": {
+        "site": "https://www.sympla.com.br/evento/5-encontro-guardioes-digitais-edicao-florianopolis-2026/3340663",
+        "tickets": "https://www.sympla.com.br/evento/5-encontro-guardioes-digitais-edicao-florianopolis-2026/3340663"
+      }
+    },
+    {
       "name": "Security BSides Floripa 2026",
       "calendarLabel": "BSides Floripa",
       "type": "conference",
@@ -186,6 +336,54 @@
       "lon": -48.5477,
       "startDate": "2026-04-25",
       "description": "Edição catarinense da conferência comunitária Security BSides."
+    },
+    {
+      "name": "FortalSec 2026",
+      "calendarLabel": "FortalSec 2026",
+      "type": "conference",
+      "city": "Fortaleza",
+      "state": "ce",
+      "lat": -3.7166,
+      "lon": -38.5423,
+      "venue": "Oásis Atlantico Imperial & Fortaleza",
+      "startDate": "2026-04-25",
+      "description": "Terceira edição presencial do evento de cibersegurança com a essência do Nordeste, realizado na Avenida Beira Mar.",
+      "links": {
+        "site": "https://www.fortalsec.com",
+        "tickets": "https://www.sympla.com.br/evento/fortalsec-2026/3230504"
+      }
+    },
+    {
+      "name": "Meetup de Cibersegurança Hack in Brasil - 25/04/2026",
+      "calendarLabel": "HiB Meetup 25/04",
+      "type": "meetup",
+      "city": "Niterói",
+      "state": "rj",
+      "lat": -22.8832,
+      "lon": -43.1034,
+      "venue": "Colégio Niterói",
+      "startDate": "2026-04-25",
+      "description": "Meetup de cibersegurança da comunidade Hack in Brasil no Colégio Niterói.",
+      "links": {
+        "site": "https://hackinbrasil.com.br/meetup-25-04-2026/",
+        "instagram": "https://www.instagram.com/hackinbrasil/"
+      }
+    },
+    {
+      "name": "HACK IN CWB - Comunidades (abril 2026)",
+      "calendarLabel": "Hack in CWB abr",
+      "type": "meetup",
+      "city": "Curitiba",
+      "state": "pr",
+      "lat": -25.4195,
+      "lon": -49.2646,
+      "venue": "Pátio Café",
+      "startDate": "2026-04-28",
+      "description": "Meetup de comunidades de segurança da informação do Hack in CWB, com networking, palestras e lightning talks.",
+      "links": {
+        "tickets": "https://www.sympla.com.br/evento/hack-in-cwb-comunidades/3392589",
+        "instagram": "https://www.instagram.com/hackincwb"
+      }
     },
     {
       "name": "CYBER SECURITY SP 2026",
@@ -221,6 +419,23 @@
       }
     },
     {
+      "name": "CNPPD 2026 - VII Congresso Nacional dos Profissionais de Privacidade de Dados",
+      "calendarLabel": "CNPPD 2026",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "UNIP Campus Norte",
+      "startDate": "2026-05-08",
+      "endDate": "2026-05-09",
+      "description": "7º congresso nacional de profissionais de privacidade de dados, presencial na UNIP Campus Norte, com transmissão online.",
+      "links": {
+        "site": "https://cnppd.live/2026",
+        "tickets": "https://www.sympla.com.br/evento/cnppd2026-vii-congresso-nacional-dos-profissionais-de-privacidade-de-dados-by-apdados/3304471"
+      }
+    },
+    {
       "name": "Security Leaders Belo Horizonte 2026",
       "calendarLabel": "SL Belo Horizonte",
       "type": "conference",
@@ -234,6 +449,21 @@
       "links": {
         "site": "https://securityleaders.com.br/",
         "youtube": "https://www.youtube.com/@TVSecurity"
+      }
+    },
+    {
+      "name": "Mobisec 2026 - 1ª edição",
+      "calendarLabel": "Mobisec 2026",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "WTC, Av. das Nações Unidas, 12551",
+      "startDate": "2026-05-13",
+      "description": "Encontro de especialistas em segurança digital sobre ameaças, vulnerabilidades, fraudes e golpes digitais.",
+      "links": {
+        "tickets": "https://www.sympla.com.br/evento/mobisec-2026-1-edicao/3242162"
       }
     },
     {
@@ -266,6 +496,51 @@
       "links": {
         "site": "https://securitybsides.com.br/2026/",
         "tickets": "https://www.sympla.com.br/evento/security-bsides-sao-paulo-bsidessp-2026/3371477"
+      }
+    },
+    {
+      "name": "OWASP Belém - Blue Team x Red Team 2026",
+      "calendarLabel": "OWASP Blue x Red",
+      "type": "meetup",
+      "city": "Belém",
+      "state": "pa",
+      "lat": -1.4554,
+      "lon": -48.4898,
+      "venue": "Faci Wy",
+      "startDate": "2026-05-16",
+      "description": "Encontro do capítulo OWASP Belém com o tema Blue Team x Red Team.",
+      "links": {
+        "tickets": "https://www.sympla.com.br/evento/owasp-belem-blue-team-x-red-team/3419549"
+      }
+    },
+    {
+      "name": "You Sh0t the Sheriff (YSTS) 2026",
+      "calendarLabel": "YSTS 2026",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "startDate": "2026-05-18",
+      "description": "Conferência de infosec em São Paulo para convidados, com local mantido em segredo até a confirmação.",
+      "links": {
+        "site": "https://ysts.org/"
+      }
+    },
+    {
+      "name": "CyberSATC 2026",
+      "calendarLabel": "CyberSATC 2026",
+      "type": "conference",
+      "city": "Criciúma",
+      "state": "sc",
+      "lat": -28.6723,
+      "lon": -49.3729,
+      "venue": "AM Master Hall",
+      "startDate": "2026-05-26",
+      "endDate": "2026-05-27",
+      "description": "Evento gratuito da SATC sobre segurança digital, IA e mercado de cibersegurança, com palestras e painéis.",
+      "links": {
+        "site": "https://unisatc.com.br/cybersatc-2026-traz-debates-sobre-seguranca-digital-ia-e-mercado-da-ciberseguranca"
       }
     },
     {
@@ -308,8 +583,9 @@
       "state": "pe",
       "lat": -8.0467,
       "lon": -34.8771,
-      "startDate": "2026-06-06",
-      "description": "Edição pernambucana da conferência comunitária Security BSides."
+      "startDate": "2026-06-05",
+      "description": "Edição pernambucana da conferência comunitária Security BSides.",
+      "endDate": "2026-06-06"
     },
     {
       "name": "Security Leaders Curitiba 2026",
@@ -329,6 +605,22 @@
         "facebook": "https://www.facebook.com/assespropr",
         "linkedin": "https://www.linkedin.com/company/assespro-pr/",
         "youtube": "https://www.youtube.com/user/assespropr"
+      }
+    },
+    {
+      "name": "Desbestificando SecInfo 3.0 (Sucuri Hacker Club) 2026",
+      "calendarLabel": "Desbestificando",
+      "type": "meetup",
+      "city": "Campo Grande",
+      "state": "ms",
+      "lat": -20.4486,
+      "lon": -54.6295,
+      "venue": "Living Lab MS",
+      "startDate": "2026-06-11",
+      "description": "Talk aberta à comunidade de TI e cibersegurança sobre segurança da informação para o dia a dia.",
+      "links": {
+        "site": "https://www.sympla.com.br/evento/desbestificando-secinfo/3458838",
+        "tickets": "https://www.sympla.com.br/evento/desbestificando-secinfo/3458838"
       }
     },
     {
@@ -379,6 +671,21 @@
       }
     },
     {
+      "name": "Workshop CTF (IDP Asa Norte) 2026",
+      "calendarLabel": "Workshop CTF BSB",
+      "type": "workshop",
+      "city": "Brasília",
+      "state": "df",
+      "lat": -15.7795,
+      "lon": -47.9297,
+      "venue": "IDP Asa Norte",
+      "startDate": "2026-07-06",
+      "description": "Workshop introdutório e prático de CTF, com analista de segurança ofensiva especializado em pentest e Red Team.",
+      "links": {
+        "tickets": "https://www.even3.com.br/workshop-ctf-757265"
+      }
+    },
+    {
       "name": "CajuSec - Security Conference 2026",
       "calendarLabel": "CajuSec",
       "type": "conference",
@@ -393,6 +700,68 @@
         "site": "https://www.sympla.com.br/evento/cajusec-security-conference-2026/3304996",
         "tickets": "https://www.sympla.com.br/evento/cajusec-security-conference-2026/3304996",
         "twitter": "https://twitter.com/sympla/"
+      }
+    },
+    {
+      "name": "Simpósio Baiano de Proteção de Dados 2026",
+      "calendarLabel": "Simp. Prot. Dados BA",
+      "type": "conference",
+      "city": "Salvador",
+      "state": "ba",
+      "lat": -12.9718,
+      "lon": -38.5011,
+      "venue": "Faculdade Baiana de Direito",
+      "startDate": "2026-07-17",
+      "description": "Evento da Comissão de Proteção de Dados Pessoais da OAB/BA sobre LGPD, governança de dados e segurança da informação, com ANPD.",
+      "links": {
+        "tickets": "https://www.sympla.com.br/evento/simposio-baiano-de-protecao-de-dados/3480138"
+      }
+    },
+    {
+      "name": "CaidoAIDriven: Time de Pentest com IA (Sucuri Hacker Club) 2026",
+      "calendarLabel": "Caido AI Driven",
+      "type": "workshop",
+      "city": "Campo Grande",
+      "state": "ms",
+      "lat": -20.4486,
+      "lon": -54.6295,
+      "venue": "Living Lab MS",
+      "startDate": "2026-07-23",
+      "description": "Encontro aberto à comunidade sobre como montar um time de pentest com IA no controle, usando o Caido.",
+      "links": {
+        "site": "https://www.sympla.com.br/evento/caido-ai-driven/3513011",
+        "tickets": "https://www.sympla.com.br/evento/caido-ai-driven/3513011"
+      }
+    },
+    {
+      "name": "GloboSec Week 2026",
+      "calendarLabel": "GloboSec Week",
+      "type": "workshop",
+      "city": "Rio de Janeiro",
+      "state": "rj",
+      "lat": -22.9129,
+      "lon": -43.2003,
+      "startDate": "2026-07-27",
+      "endDate": "2026-07-31",
+      "description": "Imersão presencial em cibersegurança da Globo para universitários, com desafios práticos e palestras, gratuita.",
+      "links": {
+        "site": "https://convergenciadigital.com.br/?p=52596"
+      }
+    },
+    {
+      "name": "14º Fórum Brasileiro de CSIRTs 2026",
+      "calendarLabel": "Fórum CSIRTs",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "Chácara Santo Antônio",
+      "startDate": "2026-07-28",
+      "endDate": "2026-07-29",
+      "description": "Fórum do CERT.br/NIC.br para profissionais de resposta a incidentes, SOC e threat intelligence; dia 30 tem workshop MISP.",
+      "links": {
+        "site": "https://forum.cert.br/"
       }
     },
     {
@@ -457,6 +826,37 @@
       }
     },
     {
+      "name": "3º Encontro ANPD de Encarregados 2026",
+      "calendarLabel": "Encontro ANPD",
+      "type": "conference",
+      "city": "Brasília",
+      "state": "df",
+      "lat": -15.7795,
+      "lon": -47.9297,
+      "venue": "Auditório do DNIT",
+      "startDate": "2026-08-19",
+      "description": "Encontro da ANPD com encarregados de dados pessoais sobre proteção e governança, com painéis sobre IA generativa e incidentes de segurança.",
+      "links": {
+        "site": "https://www.gov.br/anpd/pt-br/assuntos/noticias/inscricoes-encontro-anpd-encarregados-abrem-15-julho"
+      }
+    },
+    {
+      "name": "Workshop Caido AI Driven (Sucuri Hacker Club) 2026",
+      "calendarLabel": "Workshop Caido",
+      "type": "workshop",
+      "city": "Campo Grande",
+      "state": "ms",
+      "lat": -20.4486,
+      "lon": -54.6295,
+      "venue": "Living Lab MS",
+      "startDate": "2026-08-20",
+      "description": "Workshop aberto à comunidade sobre exploração de vulnerabilidades web com pentest tradicional e IA orquestrada.",
+      "links": {
+        "site": "https://www.sympla.com.br/evento/workshop-caido-ai-driven/3547109",
+        "tickets": "https://www.sympla.com.br/evento/workshop-caido-ai-driven/3547109"
+      }
+    },
+    {
       "name": "Festival Hacker Senac 2026",
       "calendarLabel": "Festival Hacker",
       "type": "conference",
@@ -491,6 +891,68 @@
       }
     },
     {
+      "name": "2º Encontro da Rede Amazonense de Proteção de Dados 2026",
+      "calendarLabel": "Rede AM Prot.Dados",
+      "type": "conference",
+      "city": "Manaus",
+      "state": "am",
+      "lat": -3.1187,
+      "lon": -60.0212,
+      "venue": "Auditório do Centro Administrativo Des. José de Jesus Ferreira Lopes (anexo ao TJAM), Aleixo",
+      "startDate": "2026-08-27",
+      "description": "Encontro presencial sobre IA e proteção de dados, tema 'Controle, Comportamento e Confiança', das 15h às 19h15, com inscrição online.",
+      "links": {
+        "site": "https://defensoria.am.def.br/2026/08/18/inscricoes-abertas-para-encontro-sobre-inteligencia-artificial-e-protecao-de-dados"
+      }
+    },
+    {
+      "name": "Hack'a Valley Security Conference 2026",
+      "calendarLabel": "Hack'a Valley",
+      "type": "conference",
+      "city": "Pindamonhangaba",
+      "state": "sp",
+      "lat": -22.9246,
+      "lon": -45.4613,
+      "venue": "Intercity Pátio Pinda Hotel & Resort",
+      "startDate": "2026-08-29",
+      "description": "Evento de comunidade sobre segurança da informação e troca de conhecimento técnico no Vale do Paraíba, com CTF no local.",
+      "links": {
+        "site": "https://hackavalley.com.br/",
+        "tickets": "https://www.sympla.com.br/evento/hack-a-valley/3371450"
+      }
+    },
+    {
+      "name": "CTF SBSeg 2026 - Capture The Flag de Defesa",
+      "calendarLabel": "CTF SBSeg 2026",
+      "type": "ctf",
+      "city": "Niterói",
+      "state": "rj",
+      "lat": -22.8832,
+      "lon": -43.1034,
+      "venue": "Campus da Praia Vermelha da UFF (Instituto de Computação)",
+      "startDate": "2026-08-29",
+      "description": "CTF defensivo presencial do SBSeg 2026, em equipes de 1 a 4 pessoas, com desafios de redes, malware, cripto e forense.",
+      "links": {
+        "site": "https://ctf-sbseg.github.io/",
+        "tickets": "https://forms.gle/9jP4oXH9XWXaCv437"
+      }
+    },
+    {
+      "name": "17º Seminário de Proteção à Privacidade e aos Dados Pessoais",
+      "calendarLabel": "Sem. Privacidade",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "startDate": "2026-08-31",
+      "endDate": "2026-09-02",
+      "description": "Seminário gratuito do NIC.br e CGI.br sobre proteção de dados pessoais e privacidade, com transmissão online.",
+      "links": {
+        "site": "https://seminarioprivacidade.cgi.br/"
+      }
+    },
+    {
       "name": "XXVI Simpósio Brasileiro de Cibersegurança",
       "calendarLabel": "SBSeg 2026",
       "type": "conference",
@@ -505,6 +967,53 @@
         "site": "https://www.sbseg2026.uff.br/",
         "instagram": "https://www.instagram.com/sbseg2026/",
         "twitter": "https://x.com/sbseg_sbc"
+      }
+    },
+    {
+      "name": "Meetup de Cibersegurança Hack in Brasil - 03/09/2026",
+      "calendarLabel": "HiB Meetup 03/09",
+      "type": "meetup",
+      "city": "Rio de Janeiro",
+      "state": "rj",
+      "lat": -22.9129,
+      "lon": -43.2003,
+      "venue": "FIAP Rio de Janeiro",
+      "startDate": "2026-09-03",
+      "description": "Meetup de cibersegurança da comunidade Hack in Brasil, das 18h50 às 21h50, na FIAP.",
+      "links": {
+        "site": "https://hackinbrasil.com.br/meetup-03-09-2026/",
+        "instagram": "https://www.instagram.com/hackinbrasil/"
+      }
+    },
+    {
+      "name": "Conferência Nacional de Prevenção e Combate às Ameaças Cibernéticas",
+      "calendarLabel": "Conf. Ameaças Cib.",
+      "type": "conference",
+      "city": "Rio de Janeiro",
+      "state": "rj",
+      "lat": -22.9129,
+      "lon": -43.2003,
+      "venue": "Salão Nobre da OAB-RJ",
+      "startDate": "2026-09-04",
+      "description": "Conferência presencial (com transmissão no YouTube) da Comissão de Ciências Forenses da OAB-RJ e do GRI sobre ameaças cibernéticas.",
+      "links": {
+        "tickets": "https://www.sympla.com.br/evento/conferencia-nacional-de-prevencao-e-combate-as-ameacas-ciberneticas/3428878"
+      }
+    },
+    {
+      "name": "II Cyber Executive Day - POA",
+      "calendarLabel": "Cyber Exec Day POA",
+      "type": "conference",
+      "city": "Porto Alegre",
+      "state": "rs",
+      "lat": -30.0318,
+      "lon": -51.2065,
+      "venue": "Teatro PUCRS, Prédio 40, Av. Ipiranga, 6681",
+      "startDate": "2026-09-09",
+      "description": "Evento da APCRS de segurança da informação para gestores e executivos C-level, com foco em risco e impacto de negócio.",
+      "links": {
+        "site": "https://www.sympla.com.br/evento/ii-cyber-executive-day-poa/3481907",
+        "tickets": "https://www.sympla.com.br/evento/ii-cyber-executive-day-poa/3481907"
       }
     },
     {
@@ -544,10 +1053,10 @@
       "name": "Security BSides João Pessoa 2026",
       "calendarLabel": "BSides JP",
       "type": "conference",
-      "city": "João Pessoa",
+      "city": "Cabedelo",
       "state": "pb",
-      "lat": -7.1151,
-      "lon": -34.8641,
+      "lat": -6.9873,
+      "lon": -34.8284,
       "startDate": "2026-09-19",
       "logo": "images/events/bsides-jp.png",
       "description": "Conferência presencial, aberta e sem fins lucrativos da comunidade de segurança.",
@@ -621,6 +1130,86 @@
       }
     },
     {
+      "name": "HackBahia 2026 - Edição Especial 10 Anos",
+      "calendarLabel": "HackBahia 2026",
+      "type": "conference",
+      "city": "Salvador",
+      "state": "ba",
+      "lat": -12.9718,
+      "lon": -38.5011,
+      "venue": "Cinema do Museu Geológico da Bahia",
+      "startDate": "2026-09-26",
+      "description": "Encontro técnico de segurança da informação feito pela comunidade, edição especial de 10 anos, com palestras e networking.",
+      "links": {
+        "site": "https://hackbahia.github.io/",
+        "tickets": "https://doity.com.br/hackbahia-2026",
+        "instagram": "https://instagram.com/hackbahia"
+      }
+    },
+    {
+      "name": "HumanConf 2026",
+      "calendarLabel": "HumanConf 2026",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "Novotel Center Norte",
+      "startDate": "2026-09-26",
+      "description": "3ª edição da conferência brasileira sobre risco humano e conscientização em segurança.",
+      "links": {
+        "site": "https://humanconf.com/"
+      }
+    },
+    {
+      "name": "XVI Encontro de Segurança em Informática (EnSI) 2026",
+      "calendarLabel": "EnSI CERT.Bahia",
+      "type": "conference",
+      "city": "Salvador",
+      "state": "ba",
+      "lat": -12.9718,
+      "lon": -38.5011,
+      "venue": "Auditório do IME, UFBA",
+      "startDate": "2026-10-01",
+      "description": "Encontro gratuito do CERT.Bahia com palestras de segurança e CTF, no auditório do IME/UFBA.",
+      "links": {
+        "site": "https://ensi.pop-ba.rnp.br/"
+      }
+    },
+    {
+      "name": "Cyber Security Summit Brasil 2026",
+      "calendarLabel": "Cyber Sec Summit",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "Grand Hyatt São Paulo",
+      "startDate": "2026-10-05",
+      "endDate": "2026-10-06",
+      "description": "10ª edição do Cyber Security Summit Brasil, em dois dias no Grand Hyatt, em São Paulo.",
+      "links": {
+        "site": "https://cybersecuritysummit.com.br/",
+        "tickets": "https://www.sympla.com.br/evento/cyber-security-summit-2026/3266919"
+      }
+    },
+    {
+      "name": "Cybersec Experience (Sucuri Hacker Club) 2026",
+      "calendarLabel": "Cybersec Experience",
+      "type": "meetup",
+      "city": "Campo Grande",
+      "state": "ms",
+      "lat": -20.4486,
+      "lon": -54.6295,
+      "venue": "Living Lab MS",
+      "startDate": "2026-10-08",
+      "description": "Encontro aberto do Sucuri Hacker Club com atividades práticas e competição CTF.",
+      "links": {
+        "site": "https://www.sympla.com.br/evento/cybersec-experience/3609237",
+        "tickets": "https://www.sympla.com.br/evento/cybersec-experience/3609237"
+      }
+    },
+    {
       "name": "Latinoware 2026",
       "calendarLabel": "Latinoware",
       "type": "conference",
@@ -635,6 +1224,21 @@
       "description": "23º Congresso Latino-Americano de Software Livre e Tecnologias Abertas.",
       "links": {
         "site": "https://latinoware.org/"
+      }
+    },
+    {
+      "name": "Dia da Segurança da Informação (DISI) 2026",
+      "calendarLabel": "DISI 2026",
+      "type": "conference",
+      "city": "Porto Alegre",
+      "state": "rs",
+      "lat": -30.0318,
+      "lon": -51.2065,
+      "venue": "Instituto Federal do Rio Grande do Sul (IFRS)",
+      "startDate": "2026-10-14",
+      "description": "Dia da Segurança da Informação promovido com a RNP no IFRS, com debates sobre o uso cidadão e seguro da internet.",
+      "links": {
+        "site": "https://www.rnp.br/2026/10/15/disi-2026-promove-reflexao-sobre-o-uso-cidadao-da-internet-no-ifrs"
       }
     },
     {
@@ -688,6 +1292,53 @@
       }
     },
     {
+      "name": "8.8 Brasil 2026",
+      "calendarLabel": "8.8 Brasil",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "Hotel Jaragua Inn",
+      "startDate": "2026-10-21",
+      "description": "Edição brasileira da 8.8 Computer Security Conference, evento técnico e acadêmico de um dia.",
+      "links": {
+        "site": "https://unreal.8dot8.org/brasil/"
+      }
+    },
+    {
+      "name": "Encontramos Bugs na NASA (Sucuri Hacker Club) 2026",
+      "calendarLabel": "Bugs na NASA",
+      "type": "meetup",
+      "city": "Campo Grande",
+      "state": "ms",
+      "lat": -20.4486,
+      "lon": -54.6295,
+      "venue": "Faculdade Insted",
+      "startDate": "2026-10-22",
+      "description": "Bate-papo com três pesquisadores sobre bug bounty da NASA e impacto na carreira.",
+      "links": {
+        "site": "https://www.sympla.com.br/evento/bugs-na-nasa/3626383",
+        "tickets": "https://www.sympla.com.br/evento/bugs-na-nasa/3626383"
+      }
+    },
+    {
+      "name": "AlligatorCON BR4s1l 2026",
+      "calendarLabel": "AlligatorCON 2026",
+      "type": "conference",
+      "city": "Recife",
+      "state": "pe",
+      "lat": -8.0467,
+      "lon": -34.8771,
+      "venue": "Complexo Penitenciário Prof. Aníbal Bruno",
+      "startDate": "2026-10-23",
+      "endDate": "2026-10-24",
+      "description": "Conferência da cena hacker brasileira, 'nascida do mangue ao caos no centro do Recife'.",
+      "links": {
+        "site": "https://alligatorcon.com/"
+      }
+    },
+    {
       "name": "CS4CA LATAM Summit",
       "calendarLabel": "CS4CA LATAM",
       "type": "conference",
@@ -738,6 +1389,23 @@
       }
     },
     {
+      "name": "ECHO - Evento de Conexões, Hacking e Operações em Segurança 2026",
+      "calendarLabel": "ECHO UFBA 2026",
+      "type": "conference",
+      "city": "Salvador",
+      "state": "ba",
+      "lat": -12.9718,
+      "lon": -38.5011,
+      "venue": "UFBA, Campus Ondina (IME)",
+      "startDate": "2026-10-30",
+      "endDate": "2026-10-31",
+      "description": "Primeira edição do evento da LARSEC-UFBA sobre redes e cibersegurança, com palestras, painéis, oficinas e minicursos.",
+      "links": {
+        "tickets": "https://www.even3.com.br/echo-evento-de-conexoes-hackin-e-operacoes-em-seguranca-788397/",
+        "site": "https://baiaotech.org/eventos/echo-larsec-ufba-2026/"
+      }
+    },
+    {
       "name": "FatecSeg 2026 – Congresso de Segurança da Informação",
       "calendarLabel": "FatecSeg 2026",
       "type": "conference",
@@ -770,6 +1438,36 @@
         "site": "https://www.nullbyte-con.org/",
         "tickets": "https://www.sympla.com.br/evento/nullbyte-security-conference-2026/3385269",
         "facebook": "https://www.facebook.com/nullbytecon/"
+      }
+    },
+    {
+      "name": "Simpósio Brasileiro de Segurança Cibernética no Agronegócio 2026",
+      "calendarLabel": "Cibersegurança Agro",
+      "type": "conference",
+      "city": "Brasília",
+      "state": "df",
+      "lat": -15.7795,
+      "lon": -47.9297,
+      "venue": "Auditório da FACE/UnB",
+      "startDate": "2026-11-10",
+      "description": "Simpósio presencial na UnB sobre riscos cibernéticos no agronegócio, com 11 palestras e 3 painéis; organizado por FGV Agro, OSCA, SOBER e FACE/UnB.",
+      "links": {
+        "tickets": "https://www.sympla.com.br/evento/simposio-brasileiro-de-seguranca-cibernetica-no-agronegocio/3630937"
+      }
+    },
+    {
+      "name": "O Futuro da Cyber Segurança - Caxias do Sul 2026",
+      "calendarLabel": "Futuro Cyber Caxias",
+      "type": "meetup",
+      "city": "Caxias do Sul",
+      "state": "rs",
+      "lat": -29.1629,
+      "lon": -51.1792,
+      "venue": "Anfiteatro da Uniftec",
+      "startDate": "2026-11-12",
+      "description": "Tarde gratuita (13h30 às 18h) com palestras e painel sobre ameaças, segurança preemptiva e testes de intrusão, da Gruppen it Security.",
+      "links": {
+        "site": "https://www.trinopolo.com.br/agenda-de-eventos/o-futuro-da-cyber-seguranca"
       }
     },
     {
@@ -837,6 +1535,72 @@
       }
     },
     {
+      "name": "GambiConf 2026",
+      "calendarLabel": "GambiConf 2026",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "USP - Campus Butantã, IME, Bloco B",
+      "startDate": "2026-11-28",
+      "endDate": "2026-11-29",
+      "description": "Conferência que celebra o espírito hacker, com projetos criativos e palestras que passam por segurança e engenharia reversa.",
+      "links": {
+        "site": "https://gambiconf.dev/",
+        "tickets": "https://www.tickettailor.com/events/gambiconf/2226768"
+      }
+    },
+    {
+      "name": "307 Temporary Security Conference (307c) 2026",
+      "calendarLabel": "307c 2026",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "PUC-SP, campus Consolação, Rua Marques de Paranaguá, 111",
+      "startDate": "2026-12-05",
+      "endDate": "2026-12-06",
+      "description": "Conferência gratuita de segurança da informação na PUC-SP, com CFP, villages e voluntários.",
+      "links": {
+        "site": "https://307c.tmp.br/",
+        "cfp": "http://cfp.307c.tmp.br"
+      }
+    },
+    {
+      "name": "GTS 41 e GTER 55 (Semana de Infraestrutura da Internet)",
+      "calendarLabel": "GTS 41 / GTER 55",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "startDate": "2026-12-07",
+      "endDate": "2026-12-08",
+      "description": "Reunião do Grupo de Trabalho em Segurança de Redes (GTS) e do GTER, do CGI.br, com palestras técnicas.",
+      "links": {
+        "site": "https://gtergts.nic.br/"
+      }
+    },
+    {
+      "name": "Data Privacy Global Conference 2026 (DPGC)",
+      "calendarLabel": "DPGC 2026",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "ESPM, Rua Dr. Álvaro Alvim, 123, Vila Mariana",
+      "startDate": "2026-12-07",
+      "endDate": "2026-12-08",
+      "description": "Conferência sobre privacidade e proteção de dados na ESPM Vila Mariana, com inscrições abertas ao público.",
+      "links": {
+        "site": "https://dpgconference.com.br/",
+        "tickets": "https://cursos.dataprivacy.com.br/front/detalhes/340/dpgc-2026"
+      }
+    },
+    {
       "name": "Security Leaders Premiação 2026",
       "calendarLabel": "SL Premiação",
       "type": "conference",
@@ -865,6 +1629,23 @@
       "description": "O DPOday 2027 chega à 5ª edição com foco na Governança de Dados na Era dos Agentes de IA."
     },
     {
+      "name": "Oxum Hacker Conference 2027",
+      "calendarLabel": "Oxum Hacker 2027",
+      "type": "conference",
+      "city": "Salvador",
+      "state": "ba",
+      "lat": -12.9718,
+      "lon": -38.5011,
+      "venue": "Espaço Cultural Raul Chaves, Faculdade de Direito da UFBA",
+      "startDate": "2027-01-30",
+      "description": "Segunda edição da conferência do Axé Sec, presencial, com palestras técnicas sobre fundamentos de cibersegurança.",
+      "links": {
+        "site": "https://axesec.cc/pages/oxum/",
+        "tickets": "https://www.sympla.com.br/evento/oxum-hacker-conference-2027/3585321",
+        "instagram": "https://www.instagram.com/oxumhc"
+      }
+    },
+    {
       "name": "SecOps Summit 2027",
       "calendarLabel": "SecOps Summit",
       "type": "conference",
@@ -881,6 +1662,89 @@
         "tickets": "https://sigevent.pro/ard/ingressos/br/562/inicial",
         "youtube": "https://www.youtube.com/@SecOpsTV"
       }
+    },
+    {
+      "name": "BSides Rio de Janeiro 2027",
+      "calendarLabel": "BSidesRJ 2027",
+      "type": "conference",
+      "city": "Rio de Janeiro",
+      "state": "rj",
+      "lat": -22.9129,
+      "lon": -43.2003,
+      "startDate": "2027-04-03",
+      "description": "Terceira edição da Security BSides Rio de Janeiro, conforme agenda do blog AnchisesLandia.",
+      "links": {
+        "site": "https://bsidesrj.com.br/"
+      }
+    },
+    {
+      "name": "Hack In Cariri - 4ª Edição (2027)",
+      "calendarLabel": "Hack In Cariri 4",
+      "type": "ctf",
+      "city": "Juazeiro do Norte",
+      "state": "ce",
+      "lat": -7.1962,
+      "lon": -39.3076,
+      "venue": "A definir",
+      "startDate": "2027-04-03",
+      "description": "4ª edição do Hack In Cariri, com arena de CTF e tema \"A Era da IA\"; local ainda não divulgado.",
+      "links": {
+        "site": "https://hackincariri.com.br",
+        "tickets": "https://submitly.com.br/evento/hack-in-cariri-4-edicao",
+        "instagram": "https://www.instagram.com/hackincariri"
+      }
+    },
+    {
+      "name": "0xE Hacker Conference 2027",
+      "calendarLabel": "0xE Hacker 2027",
+      "type": "conference",
+      "city": "Maceió",
+      "state": "al",
+      "lat": -9.666,
+      "lon": -35.735,
+      "venue": "Maceió Atlantic Suites, Jatiúca",
+      "startDate": "2027-04-10",
+      "description": "Conferência do 0xE Hacker Club com palestras sobre hacking e segurança, tendências, técnicas, ferramentas e networking.",
+      "links": {
+        "tickets": "https://doity.com.br/0xe-hacker-conference-2027",
+        "site": "https://conference.oxehc.com.br"
+      }
+    },
+    {
+      "name": "DunaSec 2027",
+      "calendarLabel": "DunaSec 2027",
+      "type": "conference",
+      "city": "Natal",
+      "state": "rn",
+      "lat": -5.7936,
+      "lon": -35.1986,
+      "startDate": "2027-04-17",
+      "description": "Próxima edição do DunaSec, evento de cibersegurança de Natal.",
+      "links": {
+        "site": "https://dunasec.com.br/"
+      }
+    },
+    {
+      "name": "Fortalsec 2027",
+      "calendarLabel": "Fortalsec 2027",
+      "type": "conference",
+      "city": "Fortaleza",
+      "state": "ce",
+      "lat": -3.7166,
+      "lon": -38.5423,
+      "startDate": "2027-04-24",
+      "description": "Próxima edição do Fortalsec, evento de cibersegurança de Fortaleza."
+    },
+    {
+      "name": "Security BSides Floripa 2027",
+      "calendarLabel": "BSides Floripa 27",
+      "type": "conference",
+      "city": "Florianópolis",
+      "state": "sc",
+      "lat": -27.5945,
+      "lon": -48.5477,
+      "startDate": "2027-04-24",
+      "description": "Próxima edição da Security BSides Florianópolis."
     },
     {
       "name": "CybersecGO 2027",
@@ -900,6 +1764,32 @@
       }
     },
     {
+      "name": "Security BSides São Paulo 2027",
+      "calendarLabel": "BSidesSP 2027",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "startDate": "2027-05-15",
+      "endDate": "2027-05-16",
+      "description": "Próxima edição da Security BSides São Paulo, conforme agenda do blog AnchisesLandia."
+    },
+    {
+      "name": "You Sh0t the Sheriff (YSTS) 2027",
+      "calendarLabel": "YSTS 2027",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "startDate": "2027-05-17",
+      "description": "Próxima edição da conferência YSTS, em São Paulo.",
+      "links": {
+        "site": "https://ysts.org/"
+      }
+    },
+    {
       "name": "CyberSecFest Belo Horizonte 2027",
       "calendarLabel": "CyberSecFest BH",
       "type": "conference",
@@ -913,6 +1803,134 @@
       "links": {
         "site": "https://www.sympla.com.br/evento/cybersecfest-belo-horizonte-edicao-2027/3223541",
         "tickets": "https://www.sympla.com.br/evento/cybersecfest-belo-horizonte-edicao-2027/3223541"
+      }
+    },
+    {
+      "name": "CyberSecFest São Paulo 2027",
+      "calendarLabel": "CyberSecFest SP",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "Bisutti Contemporâneo, Av. Morumbi, 8076",
+      "startDate": "2027-06-29",
+      "description": "Edição 2027 do CyberSecFest em São Paulo, das 8h às 21h.",
+      "links": {
+        "site": "https://www.devopsbootcamp.net/cybersecfest-saopaulo",
+        "tickets": "https://www.sympla.com.br/evento/cybersecfest-sao-paulo-edicao-2026/3223548"
+      }
+    },
+    {
+      "name": "BXSEC 2027",
+      "calendarLabel": "BXSEC 2027",
+      "type": "conference",
+      "city": "Santos",
+      "state": "sp",
+      "lat": -23.9535,
+      "lon": -46.335,
+      "startDate": "2027-08-21",
+      "description": "Próxima edição da BXSEC Security Conference, em Santos.",
+      "links": {
+        "site": "https://bxsec.org/"
+      }
+    },
+    {
+      "name": "Hack'a Valley Security Conference 2027",
+      "calendarLabel": "Hack'a Valley 27",
+      "type": "conference",
+      "city": "Pindamonhangaba",
+      "state": "sp",
+      "lat": -22.9246,
+      "lon": -45.4613,
+      "startDate": "2027-08-28",
+      "description": "Próxima edição da conferência de segurança do Vale do Paraíba.",
+      "links": {
+        "site": "https://hackavalley.com.br/"
+      }
+    },
+    {
+      "name": "XibéSec 2027",
+      "calendarLabel": "XibéSec 2027",
+      "type": "conference",
+      "city": "Belém",
+      "state": "pa",
+      "lat": -1.4554,
+      "lon": -48.4898,
+      "startDate": "2027-09-18",
+      "description": "Próxima edição do XibéSec, evento de segurança da região Norte."
+    },
+    {
+      "name": "HackBahia 2027",
+      "calendarLabel": "HackBahia 2027",
+      "type": "conference",
+      "city": "Salvador",
+      "state": "ba",
+      "lat": -12.9718,
+      "lon": -38.5011,
+      "startDate": "2027-09-25",
+      "description": "Próxima edição do HackBahia, evento da comunidade de segurança de Salvador.",
+      "links": {
+        "site": "https://hackbahia.github.io/"
+      }
+    },
+    {
+      "name": "Cyber Security Summit Brasil 2027",
+      "calendarLabel": "CSSB 2027",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "Grand Hyatt",
+      "startDate": "2027-10-18",
+      "endDate": "2027-10-19",
+      "description": "Próxima edição do Cyber Security Summit Brasil, com data e Grand Hyatt anunciados no site.",
+      "links": {
+        "site": "https://cybersecuritysummit.com.br/"
+      }
+    },
+    {
+      "name": "Security BSides Brasília 2027",
+      "calendarLabel": "BSides BSB 2027",
+      "type": "conference",
+      "city": "Brasília",
+      "state": "df",
+      "lat": -15.7795,
+      "lon": -47.9297,
+      "startDate": "2027-10-23",
+      "description": "Próxima edição da Security BSides Brasília.",
+      "links": {
+        "site": "https://bsidesbsb.com/"
+      }
+    },
+    {
+      "name": "Nullbyte Security Conference 2027",
+      "calendarLabel": "Nullbyte 2027",
+      "type": "conference",
+      "city": "Salvador",
+      "state": "ba",
+      "lat": -12.9718,
+      "lon": -38.5011,
+      "startDate": "2027-11-06",
+      "description": "Próxima edição da Nullbyte Security Conference, em Salvador.",
+      "links": {
+        "site": "https://nullbyte-con.org/"
+      }
+    },
+    {
+      "name": "BHACK 2027",
+      "calendarLabel": "BHACK 2027",
+      "type": "conference",
+      "city": "Belo Horizonte",
+      "state": "mg",
+      "lat": -19.9102,
+      "lon": -43.9266,
+      "startDate": "2027-11-27",
+      "endDate": "2027-11-28",
+      "description": "Próxima edição do BHACK, evento técnico da comunidade de segurança de BH.",
+      "links": {
+        "site": "https://bhack.com.br/"
       }
     }
   ]
