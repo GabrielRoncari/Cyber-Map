@@ -134,10 +134,12 @@
     const parts = event.city === state ? [event.city] : [event.city, state];
     return parts.filter(Boolean).join(" · ") || "Local a confirmar";
   };
-  // Quem organiza: comunidade (verde-menta no mapa) ou empresa (o lilás de sempre).
-  // Evento sem o campo "organizer" conta como empresarial.
-  const orgLabels = { community: "Comunidade", company: "Empresarial" };
-  const orgPhrases = { community: " de comunidade", company: " empresarial" };
+  // Quem organiza: comunidade, feito pela comunidade para a comunidade (verde-menta
+  // no mapa); instituição, como universidade, governo ou associação (azul-claro); ou
+  // empresa (o lilás de sempre). Evento sem o campo "organizer" conta como empresarial.
+  const orgKinds = ["community", "institution", "company"];
+  const orgLabels = { community: "Comunidade", institution: "Institucional", company: "Empresarial" };
+  const orgPhrases = { community: " de comunidade", institution: " institucional", company: " empresarial" };
   const typeAndDates = (event) => [typeLabels[event.type] || event.type, orgLabels[event.org], formatDates(event)].filter(Boolean).join(" · ");
   const venueIcon = `<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 12.6s4.2-3.9 4.2-7.1A4.2 4.2 0 0 0 2.8 5.5c0 3.2 4.2 7.1 4.2 7.1z"></path><circle cx="7" cy="5.5" r="1.5"></circle></svg>`;
 
@@ -156,11 +158,11 @@
   }, {});
   const refreshCounts = () => { counts = countByUf(shown.filter(inYear).filter(orgOk)); };
   // Quantos eventos de cada organização: decide a cor da bolinha e o anel dividido.
-  const orgMix = (events) => ({
-    community: events.filter((event) => event.org === "community").length,
-    company: events.filter((event) => event.org !== "community").length
-  });
-  const orgClass = (mix) => (mix.community && mix.company ? "is-mixed" : (mix.community ? "is-community" : "is-company"));
+  const orgMix = (events) => Object.fromEntries(orgKinds.map((kind) => [kind, events.filter((event) => event.org === kind).length]));
+  const orgClass = (mix) => {
+    const present = orgKinds.filter((kind) => mix[kind]);
+    return present.length === 1 ? `is-${present[0]}` : "is-mixed";
+  };
 
   /* ---------- Hash ---------- */
 
@@ -302,16 +304,21 @@
   // no hover e abre o evento no clique; com vários, o hover abre a lista (mapPop).
   // O evento "principal" é o próximo que vai rolar ou, se todos já passaram, o
   // mais recente: é a prioridade da cidade nos grupos.
-  // Anel em volta de bolinha com vários eventos: a parte verde é a fração de
-  // comunidade, o resto é empresarial.
+  // Anel em volta de bolinha com vários eventos: cada cor ocupa a fração dos
+  // eventos daquela organização, a partir do topo, em sentido horário.
   const splitRing = (r, mix) => {
-    const total = mix.community + mix.company;
+    const total = orgKinds.reduce((sum, kind) => sum + mix[kind], 0);
+    const length = 2 * Math.PI * r;
     const ring = svg("g", { class: "org-ring", "aria-hidden": "true" });
-    ring.append(svg("circle", { class: mix.company ? "ring-company" : "ring-community", r }));
-    if (mix.community && mix.company) {
-      const length = 2 * Math.PI * r;
-      ring.append(svg("circle", { class: "ring-community", r, transform: "rotate(-90)", "stroke-dasharray": `${(length * mix.community / total).toFixed(2)} ${length.toFixed(2)}` }));
-    }
+    let start = 0;
+    orgKinds.filter((kind) => mix[kind]).forEach((kind) => {
+      const size = length * mix[kind] / total;
+      ring.append(svg("circle", {
+        class: `ring-${kind}`, r, transform: "rotate(-90)",
+        "stroke-dasharray": `${size.toFixed(2)} ${length.toFixed(2)}`, "stroke-dashoffset": (-start).toFixed(2)
+      }));
+      start += size;
+    });
     return ring;
   };
 
@@ -585,7 +592,7 @@
     node?.focus();
     popState.quiet = false;
   };
-  const popItem = (event, withCity) => `<li><button type="button" class="pop-ev${event.org === "community" ? " is-community" : ""}${isPast(event) ? " is-past" : ""}" data-open="${escapeHtml(event.slug)}" data-hover="${escapeHtml(event.slug)}" data-city="${escapeHtml(event.cityKey)}">
+  const popItem = (event, withCity) => `<li><button type="button" class="pop-ev is-${event.org}${isPast(event) ? " is-past" : ""}" data-open="${escapeHtml(event.slug)}" data-hover="${escapeHtml(event.slug)}" data-city="${escapeHtml(event.cityKey)}">
       <span class="pop-dot" aria-hidden="true"></span><span class="pop-name">${escapeHtml(event.label)}</span><span class="pop-date">${event.startDate ? escapeHtml(shortDate(event.startDate)) : ""}</span>
       ${withCity ? `<span class="pop-city">${escapeHtml(event.city)}</span>` : ""}<span class="sr-only">, ${escapeHtml(formatDates(event))}</span>
     </button></li>`;
@@ -938,7 +945,7 @@
         cells += `<div class="${classes}" style="grid-column: ${index + 1}"><span class="cal-num"${iso === now ? ' aria-label="Hoje"' : ""}>${number}</span>${holiday ? `<span class="cal-holiday" title="${escapeHtml(holiday)}">${escapeHtml(holiday)}</span>` : ""}</div>`;
       }
       const bars = pieces.map(({ event, col, span, lane, cutStart, cutEnd }) => {
-        const classes = ["cal-event", event.org === "community" && "is-community", isPast(event) && "is-past", saved.has(event.slug) && "is-saved", cutStart && "cut-start", cutEnd && "cut-end"].filter(Boolean).join(" ");
+        const classes = ["cal-event", `is-${event.org}`, isPast(event) && "is-past", saved.has(event.slug) && "is-saved", cutStart && "cut-start", cutEnd && "cut-end"].filter(Boolean).join(" ");
         const detail = `${event.name}, ${formatDates(event)}, ${placeShort(event)}${saved.has(event.slug) ? ", na minha agenda" : ""}`;
         return `<button type="button" class="${classes}" style="grid-column: ${col + 1} / span ${span}; grid-row: ${lane + 2}" data-open="${escapeHtml(event.slug)}" data-hover="${escapeHtml(event.slug)}" data-city="${escapeHtml(event.cityKey)}"><span class="cal-ev-name">${escapeHtml(event.label)}</span><span class="cal-ev-uf" aria-hidden="true">${escapeHtml(event.uf.toUpperCase())}</span><span class="sr-only">: ${escapeHtml(detail)}</span></button>`;
       }).join("");
@@ -1305,7 +1312,7 @@
     const data = await fetch("data/events.json").then((response) => (response.ok ? response.json() : { events: [] })).catch(() => ({ events: [] }));
     allEvents = (data.events || []).map((event) => {
       const uf = event.state?.toLowerCase() || "";
-      const org = event.organizer === "community" ? "community" : "company";
+      const org = orgKinds.includes(event.organizer) ? event.organizer : "company";
       return { ...event, uf, org, slug: eventSlug(event), label: event.calendarLabel || event.name, cityKey: `${uf}|${event.city}` };
     }).sort((a, b) => (a.startDate || "9999").localeCompare(b.startDate || "9999"));
     shown = allEvents.filter((event) => !isPast(event) || inYear(event));

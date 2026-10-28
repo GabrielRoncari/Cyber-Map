@@ -69,8 +69,8 @@ export function checkCandidate(raw, page, today) {
     name,
     calendarLabel: String(raw.calendarLabel || name).trim().slice(0, 24),
     type: raw.type,
-    // Quem organiza: o site pinta comunidade de verde. Na dúvida, empresarial.
-    organizer: raw.organizer === "community" ? "community" : "company",
+    // Quem organiza: comunidade (verde no site), instituição (azul) ou empresa. Na dúvida, empresarial.
+    organizer: ["community", "institution"].includes(raw.organizer) ? raw.organizer : "company",
     city: city[0],
     state: uf,
     lat: city[1],
