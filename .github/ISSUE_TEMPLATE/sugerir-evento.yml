@@ -1,0 +1,93 @@
+name: Sugerir evento
+description: Conte de um evento presencial de segurança da informação ou cultura hacker no Brasil.
+title: "[Evento] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado pela dica! A gente confere as informações na fonte antes de colocar no mapa.
+        Só entram eventos **presenciais** (ou híbridos) **no Brasil**.
+  - type: input
+    id: nome
+    attributes:
+      label: Nome do evento
+      placeholder: "Ex.: BSides Curitiba 2027"
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Site ou página de inscrição
+      description: Onde dá para conferir a data e o local.
+      placeholder: https://
+    validations:
+      required: true
+  - type: input
+    id: datas
+    attributes:
+      label: Data
+      description: Se durar mais de um dia, o primeiro e o último.
+      placeholder: "Ex.: 15 e 16 de maio de 2027"
+    validations:
+      required: true
+  - type: input
+    id: cidade
+    attributes:
+      label: Cidade
+    validations:
+      required: true
+  - type: dropdown
+    id: uf
+    attributes:
+      label: Estado
+      options:
+        - AC
+        - AL
+        - AP
+        - AM
+        - BA
+        - CE
+        - DF
+        - ES
+        - GO
+        - MA
+        - MT
+        - MS
+        - MG
+        - PA
+        - PB
+        - PR
+        - PE
+        - PI
+        - RJ
+        - RN
+        - RS
+        - RO
+        - RR
+        - SC
+        - SP
+        - SE
+        - TO
+    validations:
+      required: true
+  - type: input
+    id: local
+    attributes:
+      label: Local (opcional)
+      placeholder: "Ex.: Centro de Convenções, Universidade…"
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: Tipo
+      options:
+        - Conferência
+        - CTF
+        - Meetup
+        - Workshop
+    validations:
+      required: true
+  - type: textarea
+    id: mais
+    attributes:
+      label: Mais alguma coisa? (opcional)
+      description: Chamada de palestras, redes sociais, se é gratuito…

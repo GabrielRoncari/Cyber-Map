@@ -19,6 +19,12 @@ python3 -m http.server 8000
 # http://localhost:8000
 ```
 
+## Sugestões de evento
+
+O botão "Sugerir evento" abre uma issue com formulário
+([`.github/ISSUE_TEMPLATE/sugerir-evento.yml`](.github/ISSUE_TEMPLATE/sugerir-evento.yml)):
+nome, link, data, cidade/UF, local e tipo. Precisa de conta no GitHub.
+
 ## Coletor de eventos
 
 Todo dia o GitHub Actions procura eventos novos com busca na web (Tavily) e IA (Gemini, plano

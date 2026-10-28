@@ -1,6 +1,6 @@
 (() => {
-  // TODO: link para sugerir evento
-  const SUGGEST_URL = "#";
+  // Formulário de issue do repositório (.github/ISSUE_TEMPLATE/sugerir-evento.yml).
+  const SUGGEST_URL = "https://github.com/GabrielRoncari/Cyber-Map/issues/new?template=sugerir-evento.yml";
   // Os dois interruptores do design (props showGraticule e showUfLabels).
   const SHOW_GRATICULE = true;
   const SHOW_UF_LABELS = true;
@@ -48,10 +48,14 @@
   const calWeeks = $("#cal-weeks");
   const calHint = $("#cal-hint");
   const calState = $("#cal-state");
+  const calStateBtn = $("#cal-state-btn");
+  const calStateMenu = $("#cal-state-menu");
+  const calStateText = $("#cal-state-text");
   const calAll = $("#cal-all");
   const calMine = $("#cal-mine");
   const calExport = $("#cal-export");
   const modal = $("#event-modal");
+  const mapPop = $("#map-pop");
 
   const typeLabels = { conference: "Conferência", ctf: "CTF", meetup: "Meetup", workshop: "Workshop" };
   // Nome completo mais a preposição que ele pede: "no Paraná" / "em Goiás".
@@ -172,6 +176,9 @@
   let overlayItems = [];
   let ufItems = [];
   let pins = [];
+  let pinLayer = null;
+  let groups = new Map();
+  let lastCam = null;
   const hotCopies = new Map();
 
   const svg = (tag, attrs = {}) => {
@@ -272,8 +279,10 @@
     overlay.append(labels);
   };
 
-  // Um pino por cidade. O evento "principal" é o próximo que vai rolar ou, se
-  // todos já passaram, o mais recente: é ele que o clique abre.
+  // Um pino por cidade, só a bolinha. Cidade com um evento mostra o nome ao lado
+  // no hover e abre o evento no clique; com vários, o hover abre a lista (mapPop).
+  // O evento "principal" é o próximo que vai rolar ou, se todos já passaram, o
+  // mais recente: é a prioridade da cidade nos grupos.
   const buildPins = (overlay) => {
     const layer = svg("g", { class: "map-pins" });
     const cities = new Map();
@@ -306,21 +315,21 @@
       if (isUp) el.append(svg("circle", { class: "pin-pulse", r: 5 }));
       if (multi) el.append(svg("circle", { class: "pin-multi", r: 7.2 }));
       el.append(svg("circle", { class: "pin-dot", r: isUp ? 4.6 : 3.4 }));
-      const label = svg("text", { class: "pin-label", x: toLeft ? -11 : 11, y: 3.6, "text-anchor": toLeft ? "end" : "start" });
-      label.textContent = primary.startDate ? `${primary.label} · ${shortDate(primary.startDate)}` : primary.label;
-      el.append(label);
-      // Geist Mono: 0.6em por letra, mais o letter-spacing de .03em, em 10.5px.
-      const labelWidth = label.textContent.length * 6.6;
-      const hit = svg("circle", {
-        class: "pin-hit", r: 12, tabindex: 0, role: "button",
-        "aria-label": `${city.city}: ${city.evs.map((event) => event.name).join(", ")}`
-      });
+      el.append(svg("text", { class: "pin-label", x: toLeft ? -11 : 11, y: 3.6, "text-anchor": toLeft ? "end" : "start" }));
+      const hit = svg("circle", { class: "pin-hit", r: 12, tabindex: 0, role: "button" });
       el.append(hit);
-      onActivate(hit, () => openEventModal(primary, hit));
-      onHover(hit, "hoverPin", city.key);
-      return { ...city, el, label, labelWidth, toLeft, left: toLeft, date: primary.startDate || "9999", x: at.x, y: at.y, isUp, slugs: city.evs.map((event) => event.slug) };
+      const pin = {
+        ...city, el, hit, primary, x: at.x, y: at.y, isUp, date: primary.startDate || "9999",
+        events: popOrder(city.evs), cityKeys: [city.key], slugs: city.evs.map((event) => event.slug),
+        title: `${city.city} · ${city.uf.toUpperCase()}`
+      };
+      hit.setAttribute("aria-label", multi ? `${city.city}: ${city.evs.length} eventos. Ver a lista` : `${primary.name}, ${formatDates(primary)}, ${city.city}`);
+      if (multi) hit.setAttribute("aria-haspopup", "dialog");
+      wireMarker(pin);
+      return pin;
     }).sort((a, b) => a.isUp - b.isUp);
     pins.forEach((pin) => { layer.append(pin.el); overlayItems.push(pin); });
+    pinLayer = layer;
     overlay.append(layer);
     // Os pinos "quentes" são redesenhados aqui, por cima de tudo, como no design.
     // Copiar em vez de mover o <g> original: mover tiraria o foco do teclado dele
@@ -341,6 +350,8 @@
     overlayItems = [];
     ufItems = [];
     statePaths = {};
+    groups = new Map();
+    lastCam = null;
 
     zoomLayer = svg("g", { class: "map-zoom" });
     const overlay = svg("g", { class: "map-overlay" });
@@ -377,37 +388,68 @@
     outline.setAttribute("display", path ? "inline" : "none");
   };
 
-  // Rótulos que se encavalam (cidades vizinhas, como São Paulo e Santana de
-  // Parnaíba): o do evento mais próximo fica; o outro tenta o lado oposto do pino
-  // e, sem espaço, só aparece no hover. Os outros pinos de próximos eventos também
-  // são obstáculo; os de eventos que já passaram podem ficar por baixo.
-  const placeLabels = (s, tx, ty) => {
-    const visible = pins.filter((pin) => pin.isUp && (!view.sel || pin.uf === view.sel));
-    const dots = visible.map((pin) => ({ pin, box: [pin.x * s + tx - 6, pin.y * s + ty - 6, pin.x * s + tx + 6, pin.y * s + ty + 6] }));
-    const taken = [];
-    const clashes = (box, pin) => [...taken, ...dots.filter((dot) => dot.pin !== pin).map((dot) => dot.box)]
-      .some((other) => box[0] < other[2] && other[0] < box[2] && box[1] < other[3] && other[1] < box[3]);
-    [...visible].sort((a, b) => a.date.localeCompare(b.date)).forEach((pin) => {
-      const px = pin.x * s + tx;
-      const py = pin.y * s + ty;
-      const boxFor = (left) => {
-        const x0 = left ? px - 11 - pin.labelWidth : px + 11;
-        return [x0 - 2, py - 7, x0 + pin.labelWidth + 2, py + 7];
-      };
-      const side = [pin.toLeft, !pin.toLeft].find((left) => !clashes(boxFor(left), pin));
-      pin.el.classList.toggle("label-off", side === undefined);
-      if (side === undefined) return;
-      taken.push(boxFor(side));
-      if (pin.left !== side) {
-        pin.left = side;
-        pin.label.setAttribute("x", side ? -11 : 11);
-        pin.label.setAttribute("text-anchor", side ? "end" : "start");
-      }
+  // Bolinhas que ficariam a menos de 16px uma da outra na tela (Grande São Paulo,
+  // Santos e Guarujá) viram um marcador só, com o número de eventos. Refeito a
+  // cada câmera: com zoom no estado, o grupo se desfaz no que já cabe separado.
+  // Com um estado selecionado, só os pinos dele se agrupam.
+  const byPriority = (a, b) => (b.isUp - a.isUp) || (a.isUp ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date));
+  const translate = (x, y, cam) => `translate(${(x * cam.s + cam.tx).toFixed(2)}px, ${(y * cam.s + cam.ty).toFixed(2)}px)`;
+
+  const buildGroup = (key, members, cam) => {
+    // O grupo fica na cidade com mais eventos e leva o nome dela ("São Paulo e região").
+    const anchor = [...members].sort((a, b) => b.evs.length - a.evs.length)[0];
+    const events = popOrder(members.flatMap((pin) => pin.evs));
+    const isUp = members.some((pin) => pin.isUp);
+    const sameUf = members.every((pin) => pin.uf === anchor.uf);
+    const title = sameUf ? `${anchor.city} e região · ${anchor.uf.toUpperCase()}` : `${members.length} cidades`;
+    const el = svg("g", { class: `pin pin-group${isUp ? " is-up" : ""}` });
+    if (isUp) el.append(svg("circle", { class: "pin-pulse", r: 7 }));
+    el.append(svg("circle", { class: "group-ring", r: 13 }), svg("circle", { class: "group-dot", r: 9 }));
+    const count = svg("text", { class: "group-count", y: 3.3, "text-anchor": "middle" });
+    count.textContent = events.length;
+    const hit = svg("circle", {
+      class: "pin-hit", r: 14, tabindex: 0, role: "button", "aria-haspopup": "dialog", "aria-expanded": "false",
+      "aria-label": `${title}: ${events.length} eventos em ${members.length} cidades. Ver a lista`
+    });
+    el.append(count, hit);
+    // Entra onde a câmera estava, para acompanhar o zoom em vez de pular.
+    el.style.transform = translate(anchor.x, anchor.y, lastCam || cam);
+    pinLayer.append(el);
+    const group = { key, el, hit, members, events, title, x: anchor.x, y: anchor.y, cityKeys: members.map((pin) => pin.key), slugs: events.map((event) => event.slug) };
+    wireMarker(group);
+    return group;
+  };
+
+  const regroup = (cam) => {
+    const pxPerUnit = mapRoot.getScreenCTM()?.a || mapRoot.getBoundingClientRect().width / VB[2] || 1;
+    const gap = 16 / pxPerUnit;
+    const found = [];
+    pins.filter((pin) => !view.sel || pin.uf === view.sel).sort(byPriority).forEach((pin) => {
+      const px = pin.x * cam.s + cam.tx;
+      const py = pin.y * cam.s + cam.ty;
+      const near = found.find((group) => Math.hypot(group.px - px, group.py - py) < gap);
+      if (near) near.members.push(pin);
+      else found.push({ px, py, members: [pin] });
+    });
+    const next = new Map();
+    found.filter((group) => group.members.length > 1).forEach((group) => {
+      const key = `g:${group.members.map((pin) => pin.key).sort().join("+")}`;
+      next.set(key, groups.get(key) || buildGroup(key, group.members, cam));
+    });
+    groups.forEach((group, key) => { if (!next.has(key)) group.el.remove(); });
+    groups = next;
+    const grouped = new Set([...groups.values()].flatMap((group) => group.members));
+    pins.forEach((pin) => {
+      const hidden = grouped.has(pin);
+      pin.el.classList.toggle("is-grouped", hidden);
+      pin.hit.setAttribute("tabindex", hidden ? "-1" : "0");
+      pin.hit.setAttribute("aria-hidden", String(hidden));
     });
   };
 
   const renderMap = () => {
     const { sel } = view;
+    closePop();
     mapHint.hidden = Boolean(sel);
     mapBack.hidden = !sel;
     mapStateLabel.hidden = !sel;
@@ -428,56 +470,186 @@
     setOutline(selOutline, sel);
     ufItems.forEach((item) => item.el.classList.toggle("is-sel", item.uf === sel));
     pins.forEach((pin) => pin.el.classList.toggle("is-dim", Boolean(sel) && pin.uf !== sel));
-    placeLabels(s, tx, ty);
+    const cam = { s, tx, ty };
+    regroup(cam);
+    // Os grupos novos nasceram na posição da câmera anterior: o reflow fixa essa
+    // posição antes de mandar para a nova, e a transição faz o resto.
+    mapRoot.getBoundingClientRect();
+    groups.forEach((group) => { group.el.style.transform = translate(group.x, group.y, cam); });
+    lastCam = cam;
     hotCopies.forEach((copy, key) => { copy.style.transform = pins.find((pin) => pin.key === key).el.style.transform; });
   };
 
   const hotCopy = (pin) => {
     const copy = pin.el.cloneNode(true);
     copy.querySelectorAll(".pin-pulse, .pin-hit").forEach((node) => node.remove());
-    copy.classList.remove("is-dim");
+    copy.classList.remove("is-dim", "is-grouped");
     copy.classList.add("is-hot");
     copy.prepend(svg("circle", { class: "pin-ring", r: 10.5 }));
     return copy;
   };
+  const markerByKey = (key) => (key ? pins.find((pin) => pin.key === key) || groups.get(key) : null);
 
   // Hover cruzado: estado, pino, card, destaque e calendário se acendem juntos.
   const renderHot = () => {
     const { sel, hoverState, hoverPin, hoverEvent } = view;
+    const hotCities = new Set(markerByKey(hoverPin)?.cityKeys || []);
     document.querySelectorAll("[data-hover]").forEach((node) => {
-      node.classList.toggle("is-hot", node.dataset.hover === hoverEvent || (Boolean(hoverPin) && node.dataset.city === hoverPin));
+      node.classList.toggle("is-hot", node.dataset.hover === hoverEvent || hotCities.has(node.dataset.city));
     });
     if (!mapRoot) return;
     Object.entries(statePaths).forEach(([uf, path]) => path.classList.toggle("is-hover", uf === hoverState));
     setOutline(hoverOutline, hoverState !== sel ? hoverState : null);
 
+    // Pino solto: redesenhado por cima, com anel. O nome aparece ao lado quando é
+    // um evento só (no hover direto num pino com vários, quem mostra é a lista).
     pins.forEach((pin) => {
-      const hot = pin.key === hoverPin || (Boolean(hoverEvent) && pin.slugs.includes(hoverEvent));
-      const copy = hotCopies.get(pin.key);
-      if (hot && !copy) {
-        const fresh = hotCopy(pin);
-        hotCopies.set(pin.key, fresh);
-        hotLayer.append(fresh);
-      } else if (!hot && copy) {
-        copy.remove();
+      const viaEvent = Boolean(hoverEvent) && pin.slugs.includes(hoverEvent);
+      const hot = !pin.el.classList.contains("is-grouped") && (pin.key === hoverPin || viaEvent);
+      let copy = hotCopies.get(pin.key);
+      if (!hot) {
+        copy?.remove();
         hotCopies.delete(pin.key);
+        return;
       }
+      if (!copy) {
+        copy = hotCopy(pin);
+        hotCopies.set(pin.key, copy);
+        hotLayer.append(copy);
+      }
+      const named = viaEvent ? findEvent(hoverEvent) : (pin.evs.length === 1 ? pin.primary : null);
+      copy.classList.toggle("show-label", Boolean(named));
+      if (named) setText(copy.querySelector(".pin-label"), named.startDate ? `${named.label} · ${shortDate(named.startDate)}` : named.label);
     });
+    groups.forEach((group) => group.el.classList.toggle("is-hot", group.key === hoverPin || (Boolean(hoverEvent) && group.slugs.includes(hoverEvent))));
 
-    const pin = hoverPin && pins.find((item) => item.key === hoverPin);
-    let code = "";
-    let text = "";
-    if (pin) {
-      code = pin.uf.toUpperCase();
-      text = `${pin.city} · ${pin.evs.map((event) => event.label).join(", ")}`;
-    } else if (hoverState) {
-      code = hoverState.toUpperCase();
-      text = `${stateName(hoverState)} · ${countLabel(counts[hoverState] || 0)} em ${year}`;
-    }
-    readout.hidden = !code;
-    setText(readoutCode, code);
-    setText(readoutText, text);
+    readout.hidden = !hoverState;
+    setText(readoutCode, hoverState ? hoverState.toUpperCase() : "");
+    setText(readoutText, hoverState ? `${stateName(hoverState)} · ${countLabel(counts[hoverState] || 0)} em ${year}` : "");
   };
+
+  /* ---------- Lista do mapa (pino com vários eventos ou grupo) ---------- */
+
+  // Próximos primeiro, do mais perto ao mais longe; depois os que já rolaram,
+  // do mais recente para trás.
+  function popOrder(events) {
+    const upcoming = events.filter((event) => !isPast(event)).sort((a, b) => (a.startDate || "9999").localeCompare(b.startDate || "9999"));
+    const past = events.filter(isPast).sort((a, b) => (b.startDate || "").localeCompare(a.startDate || ""));
+    return [...upcoming, ...past];
+  }
+
+  const popState = { marker: null, pinned: false, timer: 0, quiet: false };
+  // Devolver o foco à bolinha (Esc, modal fechado) não pode reabrir a lista.
+  const focusQuietly = (node) => {
+    popState.quiet = true;
+    node?.focus();
+    popState.quiet = false;
+  };
+  const popItem = (event, withCity) => `<li><button type="button" class="pop-ev${isPast(event) ? " is-past" : ""}" data-open="${escapeHtml(event.slug)}" data-hover="${escapeHtml(event.slug)}" data-city="${escapeHtml(event.cityKey)}">
+      <span class="pop-dot" aria-hidden="true"></span><span class="pop-name">${escapeHtml(event.label)}</span><span class="pop-date">${event.startDate ? escapeHtml(shortDate(event.startDate)) : ""}</span>
+      ${withCity ? `<span class="pop-city">${escapeHtml(event.city)}</span>` : ""}<span class="sr-only">, ${escapeHtml(formatDates(event))}</span>
+    </button></li>`;
+
+  const placePop = (marker) => {
+    const ctm = mapRoot?.getScreenCTM();
+    if (!ctm || !lastCam) return;
+    const point = mapRoot.createSVGPoint();
+    point.x = marker.x * lastCam.s + lastCam.tx;
+    point.y = marker.y * lastCam.s + lastCam.ty;
+    const at = point.matrixTransform(ctm);
+    const card = mapCard.getBoundingClientRect();
+    const x = at.x - card.left;
+    const y = at.y - card.top;
+    mapPop.style.maxHeight = "";
+    const width = mapPop.offsetWidth;
+    let height = mapPop.offsetHeight;
+    // À direita da bolinha; sem espaço, à esquerda; no celular, onde nenhum lado
+    // cabe, embaixo ou em cima. Nunca por cima da bolinha (o toque cairia na lista).
+    let left;
+    let top;
+    if (card.width - x - 30 >= width || x - 30 >= width) {
+      left = card.width - x - 30 >= width ? x + 20 : x - 20 - width;
+      top = Math.max(10, Math.min(y - 28, card.height - height - 10));
+    } else {
+      const below = card.height - y >= y;
+      const room = (below ? card.height - y : y) - 30;
+      if (height > room) {
+        mapPop.style.maxHeight = `${Math.max(120, room)}px`;
+        height = mapPop.offsetHeight;
+      }
+      left = Math.max(10, Math.min(x - width / 2, card.width - width - 10));
+      top = below ? y + 20 : Math.max(10, y - 20 - height);
+    }
+    mapPop.style.left = `${left}px`;
+    mapPop.style.top = `${top}px`;
+  };
+
+  function openPop(marker, { pinned = false, focus = false } = {}) {
+    clearTimeout(popState.timer);
+    if (popState.marker !== marker || mapPop.hidden) {
+      popState.marker?.hit.setAttribute("aria-expanded", "false");
+      const cities = new Set(marker.events.map((event) => event.cityKey));
+      const upcoming = marker.events.filter((event) => !isPast(event)).length;
+      const items = marker.events.map((event, index) => {
+        const divider = index === upcoming && upcoming > 0 ? '<li class="pop-sep" aria-hidden="true">Já rolou</li>' : "";
+        return divider + popItem(event, cities.size > 1);
+      }).join("");
+      mapPop.innerHTML = `<div class="pop-head"><p class="pop-title" id="map-pop-title">${escapeHtml(marker.title)}</p>
+        <p class="pop-sub">${escapeHtml(countLabel(marker.events.length))}${upcoming ? ` · ${upcoming} por vir` : ""}</p></div>
+        <ul class="pop-list">${items}</ul>`;
+      mapPop.hidden = false;
+      mapPop.scrollTop = 0;
+      placePop(marker);
+      marker.hit.setAttribute("aria-expanded", "true");
+      popState.marker = marker;
+      popState.pinned = false;
+    }
+    if (pinned) popState.pinned = true;
+    if (focus) mapPop.querySelector("button")?.focus();
+  }
+
+  function closePop({ restoreFocus = false } = {}) {
+    clearTimeout(popState.timer);
+    if (mapPop.hidden) return;
+    const { marker } = popState;
+    mapPop.hidden = true;
+    mapPop.replaceChildren();
+    popState.marker = null;
+    popState.pinned = false;
+    marker?.hit.setAttribute("aria-expanded", "false");
+    if (view.hoverEvent) hoverOff("hoverEvent", view.hoverEvent);
+    if (restoreFocus) focusQuietly(marker?.hit);
+  }
+  // Sai do pino ou da lista sem fixar: fecha depois de um respiro, para dar tempo
+  // de levar o mouse da bolinha até a lista.
+  const closePopSoon = () => {
+    if (popState.pinned) return;
+    clearTimeout(popState.timer);
+    popState.timer = setTimeout(() => closePop(), 220);
+  };
+
+  // Pino ou grupo: hover/foco mostra o nome (um evento) ou a lista (vários);
+  // clique abre o evento ou fixa a lista com o foco no primeiro item.
+  function wireMarker(marker) {
+    const many = marker.events.length > 1;
+    onActivate(marker.hit, () => {
+      if (!many) openEventModal(marker.events[0], marker.hit);
+      else if (popState.marker === marker && popState.pinned && !mapPop.hidden) closePop({ restoreFocus: true });
+      else openPop(marker, { pinned: true, focus: true });
+    });
+    const enter = () => {
+      hoverOn("hoverPin", marker.key);
+      if (many && !popState.quiet) openPop(marker);
+    };
+    const leave = () => {
+      hoverOff("hoverPin", marker.key);
+      if (many) closePopSoon();
+    };
+    marker.hit.addEventListener("mouseenter", enter);
+    marker.hit.addEventListener("focus", enter);
+    marker.hit.addEventListener("mouseleave", leave);
+    marker.hit.addEventListener("blur", leave);
+  }
 
   const setMapStatus = (state) => {
     mapCard.dataset.map = state;
@@ -632,18 +804,44 @@
   const cal = { month: today().slice(0, 7), mine: false };
   const calPool = () => allEvents.filter((event) => event.startDate && (!cal.mine || saved.has(event.slug)) && (!view.sel || event.uf === view.sel));
 
-  // Opções: os estados com evento no calendário, mais o selecionado no mapa
-  // (que pode não ter nenhum). Só refaz a lista quando ela muda.
+  // Menu de estados (no lugar do <select>, cuja lista aberta não aceita CSS):
+  // os estados com evento no calendário, com a contagem, mais o selecionado no
+  // mapa (que pode não ter nenhum). Só refaz os botões quando a lista muda.
+  const stateOption = (uf, name, total) => `<button type="button" class="cal-state-opt" data-uf="${uf}">
+      <span class="cal-state-name">${escapeHtml(name)}</span><span class="cal-state-count" aria-label="${escapeHtml(countLabel(total))}">${total}</span>
+    </button>`;
   const syncStateSelect = () => {
-    const ufs = [...new Set([...allEvents.filter((event) => event.startDate).map((event) => event.uf), view.sel])]
+    const dated = allEvents.filter((event) => event.startDate);
+    const perUf = dated.reduce((acc, event) => ({ ...acc, [event.uf]: (acc[event.uf] || 0) + 1 }), {});
+    const ufs = [...new Set([...dated.map((event) => event.uf), view.sel])]
       .filter((uf) => states[uf])
       .sort((a, b) => stateName(a).localeCompare(stateName(b), "pt-BR"));
-    if (calState.dataset.ufs !== ufs.join()) {
-      calState.dataset.ufs = ufs.join();
-      calState.innerHTML = `<option value="">Todos os estados</option>${ufs.map((uf) => `<option value="${uf}">${escapeHtml(stateName(uf))}</option>`).join("")}`;
+    if (calStateMenu.dataset.ufs !== ufs.join()) {
+      calStateMenu.dataset.ufs = ufs.join();
+      calStateMenu.innerHTML = stateOption("", "Todos os estados", dated.length)
+        + '<span class="cal-state-sep" aria-hidden="true"></span>'
+        + ufs.map((uf) => stateOption(uf, stateName(uf), perUf[uf] || 0)).join("");
     }
-    calState.value = view.sel || "";
-    calState.parentElement.classList.toggle("is-set", Boolean(view.sel));
+    calStateMenu.querySelectorAll("[data-uf]").forEach((option) => {
+      if (option.dataset.uf === (view.sel || "")) option.setAttribute("aria-current", "true");
+      else option.removeAttribute("aria-current");
+    });
+    setText(calStateText, view.sel ? stateName(view.sel) : "Todos os estados");
+    calState.classList.toggle("is-set", Boolean(view.sel));
+  };
+  const openStateMenu = () => {
+    calStateMenu.hidden = false;
+    calStateBtn.setAttribute("aria-expanded", "true");
+    // No celular o botão fica no meio da linha: se o menu não couber à direita, abre para a esquerda.
+    calStateMenu.classList.remove("is-right");
+    if (calStateMenu.getBoundingClientRect().right > document.documentElement.clientWidth - 12) calStateMenu.classList.add("is-right");
+    (calStateMenu.querySelector('[aria-current="true"]') || calStateMenu.querySelector("button"))?.focus();
+  };
+  const closeStateMenu = ({ restoreFocus = false } = {}) => {
+    if (calStateMenu.hidden) return;
+    calStateMenu.hidden = true;
+    calStateBtn.setAttribute("aria-expanded", "false");
+    if (restoreFocus) calStateBtn.focus();
   };
 
   const renderCalendar = () => {
@@ -851,6 +1049,7 @@
 
   const openEventModal = (event, opener = null) => {
     if (!event) return;
+    closePop();
     modalOpener = opener;
     modalEvent = event;
     fillModal(event);
@@ -866,7 +1065,7 @@
 
   // mouseenter/leave e focus/blur por elemento, delegados no contêiner (o
   // conteúdo é regerado a cada filtro).
-  const delegateHover = (container) => {
+  const delegateHover = (container, open = (trigger) => openEventModal(findEvent(trigger.dataset.open), trigger)) => {
     const handle = (type) => (event) => {
       const node = event.target.closest("[data-hover]");
       if (!node || node.contains(event.relatedTarget)) return;
@@ -879,11 +1078,46 @@
     container.addEventListener("focusout", handle("off"));
     container.addEventListener("click", (event) => {
       const trigger = event.target.closest("[data-open]");
-      if (trigger) openEventModal(findEvent(trigger.dataset.open), trigger);
+      if (trigger) open(trigger);
     });
   };
   delegateHover(list);
   delegateHover(calWeeks);
+  // Da lista do mapa, o foco volta para a bolinha quando o modal fecha (a lista
+  // fecha antes de abrir o modal).
+  delegateHover(mapPop, (trigger) => {
+    const opener = popState.marker?.hit || null;
+    closePop();
+    openEventModal(findEvent(trigger.dataset.open), opener);
+  });
+  mapPop.addEventListener("mouseenter", () => clearTimeout(popState.timer));
+  mapPop.addEventListener("mouseleave", closePopSoon);
+  mapPop.addEventListener("focusin", () => clearTimeout(popState.timer));
+  mapPop.addEventListener("focusout", (event) => {
+    if (!mapPop.contains(event.relatedTarget) && event.relatedTarget !== popState.marker?.hit) closePop();
+  });
+  // Setas andam pela lista; Esc fecha e devolve o foco à bolinha.
+  mapPop.addEventListener("keydown", (event) => {
+    const items = [...mapPop.querySelectorAll("button")];
+    const index = items.indexOf(document.activeElement);
+    const step = { ArrowDown: 1, ArrowUp: -1 }[event.key];
+    if (step && index !== -1) {
+      event.preventDefault();
+      items[(index + step + items.length) % items.length].focus();
+    } else if (event.key === "Escape") {
+      event.stopPropagation();
+      closePop({ restoreFocus: true });
+    }
+  });
+  document.addEventListener("pointerdown", (event) => {
+    if (!mapPop.hidden && !mapPop.contains(event.target) && event.target !== popState.marker?.hit) closePop();
+  });
+  // O agrupamento depende do tamanho do mapa na tela.
+  let resizeFrame = 0;
+  new ResizeObserver(() => {
+    cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(() => { if (mapRoot) renderMap(); });
+  }).observe(mapCard);
 
   // Ao limpar pelo teclado, o foco não pode sumir junto com o botão escondido.
   const clearFrom = (button, fallback) => {
@@ -912,7 +1146,38 @@
   });
   $("#modal-ics").addEventListener("click", () => download(`${modalEvent.slug}.ics`, icsFor([modalEvent])));
 
-  calState.addEventListener("change", () => select(calState.value || null, { keep: true }));
+  calStateBtn.addEventListener("click", () => (calStateMenu.hidden ? openStateMenu() : closeStateMenu()));
+  calStateBtn.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") { event.preventDefault(); openStateMenu(); }
+  });
+  calStateMenu.addEventListener("click", (event) => {
+    const option = event.target.closest("[data-uf]");
+    if (!option) return;
+    closeStateMenu({ restoreFocus: true });
+    select(option.dataset.uf || null, { keep: true });
+  });
+  // Setas, Home/End e a primeira letra do estado andam pelo menu; Esc fecha.
+  calStateMenu.addEventListener("keydown", (event) => {
+    const options = [...calStateMenu.querySelectorAll("[data-uf]")];
+    const index = options.indexOf(document.activeElement);
+    let target = null;
+    if (event.key === "ArrowDown") target = options[Math.min(index + 1, options.length - 1)];
+    else if (event.key === "ArrowUp") target = options[Math.max(index - 1, 0)];
+    else if (event.key === "Home") target = options[0];
+    else if (event.key === "End") target = options[options.length - 1];
+    else if (event.key === "Escape") {
+      event.stopPropagation();
+      closeStateMenu({ restoreFocus: true });
+      return;
+    } else if (/^\p{L}$/u.test(event.key)) {
+      const letter = slugify(event.key);
+      const starts = (option) => slugify(option.textContent.trim()).startsWith(letter);
+      target = options.slice(index + 1).find(starts) || options.find(starts);
+    }
+    if (target) { event.preventDefault(); target.focus(); }
+  });
+  calState.addEventListener("focusout", (event) => { if (!calState.contains(event.relatedTarget)) closeStateMenu(); });
+  document.addEventListener("pointerdown", (event) => { if (!calState.contains(event.target)) closeStateMenu(); });
   calAll.addEventListener("click", () => { cal.mine = false; renderCalendar(); renderHot(); });
   calMine.addEventListener("click", () => { cal.mine = true; renderCalendar(); renderHot(); });
   $("#cal-prev").addEventListener("click", () => shiftMonth(-1));
@@ -931,7 +1196,7 @@
   modal.addEventListener("close", () => {
     modalEvent = null;
     syncHash(view.sel);
-    modalOpener?.focus();
+    focusQuietly(modalOpener);
     modalOpener = null;
   });
   // O <dialog> não tem padding: o clique só cai nele mesmo quando é no backdrop.
@@ -946,10 +1211,11 @@
     else panelTitle.focus();
   });
 
-  // Escape desfaz uma camada por vez: o modal (nativo), depois o filtro.
+  // Escape desfaz uma camada por vez: o modal (nativo), a lista do mapa, depois o filtro.
   document.addEventListener("keydown", (event) => {
     if (event.key !== "Escape" || modal.open) return;
-    if (view.sel) select(null);
+    if (!mapPop.hidden) closePop({ restoreFocus: mapPop.contains(document.activeElement) });
+    else if (view.sel) select(null);
   });
 
   // Só dispara quando alguém edita a URL ou abre um link compartilhado, nunca pelo syncHash.

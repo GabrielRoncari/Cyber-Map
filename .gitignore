@@ -16,7 +16,3 @@ reports/
 # Coletor de eventos: chaves locais e cache
 .env
 scraper/.cache/
-
-# Só locais: o site antigo arquivado e o material do redesign
-_arquivo-pirate-ship/
-handoff-cybermap/

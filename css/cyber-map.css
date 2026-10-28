@@ -202,6 +202,39 @@ h2 { font-size: 21px; line-height: 1.2; font-weight: 600; letter-spacing: -0.015
 }
 .map-readout-code { color: var(--lavender); letter-spacing: .1em; }
 
+/* Lista de uma bolinha com vários eventos (ou de um grupo de bolinhas). */
+.map-pop {
+  position: absolute; z-index: 3;
+  width: 264px; max-width: calc(100% - 20px); max-height: min(330px, calc(100% - 20px)); overflow-y: auto;
+  padding: 12px 8px 8px; border-radius: 12px;
+  background: var(--surface-1); border: 1px solid var(--line-3);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, .5);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.map-pop[hidden] { display: none; }
+.pop-head { display: flex; flex-direction: column; gap: 5px; padding: 0 8px; }
+.pop-title { font: 600 14px/1.3 var(--font-sans); color: var(--text); }
+.pop-sub { font: 500 10px/1.2 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--lavender); }
+.pop-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 1px; }
+.pop-ev {
+  width: 100%; padding: 7px 8px; border: 0; border-radius: 8px;
+  background: transparent; color: var(--text); text-align: left; cursor: pointer;
+  display: grid; grid-template-columns: 8px minmax(0, 1fr) auto; align-items: center; column-gap: 9px; row-gap: 2px;
+  font: 500 13px/1.3 var(--font-sans);
+}
+.pop-ev:hover, .pop-ev.is-hot { background: var(--surface-hot); }
+.pop-ev:focus-visible { outline: 2px solid var(--lavender); outline-offset: -2px; }
+.pop-ev.is-past { color: var(--text-2); }
+.pop-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--pin); box-shadow: 0 0 0 2px var(--accent); }
+.pop-ev.is-past .pop-dot { background: transparent; box-shadow: inset 0 0 0 1.4px var(--text-3); }
+.pop-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pop-date { font: 500 10.5px var(--font-mono); letter-spacing: .06em; color: var(--text-2); }
+.pop-city { grid-column: 2 / -1; font-size: 11.5px; color: var(--text-3); }
+.pop-sep {
+  margin: 6px 8px 2px; padding-top: 8px; border-top: 1px solid var(--line);
+  font: 500 10px/1 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--text-3);
+}
+
 .map-legend {
   position: absolute; left: 16px; bottom: 16px; z-index: 1;
   display: flex; flex-direction: column; gap: 10px;
@@ -288,8 +321,17 @@ h2 { font-size: 21px; line-height: 1.2; font-weight: 600; letter-spacing: -0.015
   paint-order: stroke; stroke: var(--bg); stroke-width: 4px; stroke-linejoin: round;
   pointer-events: none; /* não tapa o clique no pino de baixo */
 }
-.pin.is-up:not(.is-dim) .pin-label, .pin.is-hot .pin-label { display: inline; }
-.pin.label-off:not(.is-hot) .pin-label { display: none; }
+/* Só a bolinha: o nome aparece no hover (cópia "quente" do pino, por cima). */
+.pin.is-hot.show-label .pin-label { display: inline; }
+/* Pino que entrou num grupo some; quem responde é o marcador do grupo. */
+.pin.is-grouped { opacity: 0; }
+.pin.is-grouped .pin-hit { pointer-events: none; }
+.group-dot { fill: var(--surface-0); stroke: var(--text-3); stroke-width: 1.4px; }
+.pin-group.is-up .group-dot { fill: var(--pin); stroke: var(--accent); stroke-width: 2px; }
+.group-count { font: 700 9.5px var(--font-mono); fill: var(--text-2); pointer-events: none; }
+.pin-group.is-up .group-count { fill: var(--accent); }
+.group-ring { display: none; fill: var(--pin-hot-fill); stroke: var(--text); stroke-width: 1.2px; }
+.pin-group.is-hot .group-ring { display: inline; }
 .pin-hit { fill: transparent; cursor: pointer; }
 .pin-hit:focus-visible { stroke: #FFFFFF; stroke-width: 2px; }
 .map-pins-hot { pointer-events: none; }
@@ -442,21 +484,44 @@ h2 { font-size: 21px; line-height: 1.2; font-weight: 600; letter-spacing: -0.015
 .cal-today { height: 36px; padding: 0 14px; font-size: 13px; }
 .cal-step { width: 36px; height: 36px; padding: 0; display: flex; align-items: center; justify-content: center; }
 .cal-step svg path { fill: none; stroke: var(--text); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-.cal-state { position: relative; display: flex; align-items: center; margin-left: 8px; }
-.cal-state select {
-  height: 36px; max-width: 220px; padding: 0 32px 0 12px;
-  border: 1px solid var(--line-3); border-radius: 8px;
-  background: transparent; color: var(--text);
-  font: 500 13px var(--font-sans);
-  appearance: none; cursor: pointer;
-  text-overflow: ellipsis;
+/* Filtro de estado: botão + menu próprio (a lista aberta do <select> não aceita CSS). */
+.cal-state { position: relative; margin-left: 8px; }
+.cal-state-btn {
+  height: 36px; max-width: 220px; padding: 0 12px;
+  font-size: 13px; cursor: pointer;
+  display: flex; align-items: center; gap: 10px;
 }
-.cal-state select:hover { background: var(--ghost-hover); border-color: var(--line-hot); color: #FFFFFF; }
-.cal-state select:focus-visible { outline: 2px solid var(--lavender); outline-offset: 2px; }
-.cal-state option { background: var(--surface-1); color: var(--text); }
-.cal-state.is-set select { border-color: var(--accent); background: var(--surface-3); color: #FFFFFF; }
-.cal-state svg { position: absolute; right: 12px; pointer-events: none; }
-.cal-state svg path { fill: none; stroke: var(--lavender); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.cal-state-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cal-state-btn svg { flex-shrink: 0; transition: transform 160ms ease; }
+.cal-state-btn svg path { fill: none; stroke: var(--lavender); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.cal-state-btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+.cal-state.is-set .cal-state-btn { border-color: var(--accent); background: var(--surface-3); color: #FFFFFF; }
+.cal-state-menu {
+  position: absolute; top: calc(100% + 6px); left: 0; z-index: 20;
+  width: 248px; max-height: 340px; overflow-y: auto;
+  padding: 6px; border-radius: 12px;
+  background: var(--surface-1); border: 1px solid var(--line-3);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, .5);
+  display: flex; flex-direction: column; gap: 2px;
+}
+.cal-state-menu[hidden] { display: none; }
+.cal-state-menu.is-right { left: auto; right: 0; }
+.cal-state-opt {
+  flex-shrink: 0; height: 36px; padding: 0 8px 0 12px;
+  border: 0; border-radius: 8px; background: transparent; color: var(--text-2);
+  font: 500 13px var(--font-sans); text-align: left; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.cal-state-opt:hover { background: var(--surface-hot); color: #FFFFFF; }
+.cal-state-opt:focus-visible { outline: 2px solid var(--lavender); outline-offset: -2px; color: #FFFFFF; }
+.cal-state-opt[aria-current="true"] { background: var(--tab-active); box-shadow: inset 0 0 0 1px var(--line-hot); color: #FFFFFF; }
+.cal-state-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cal-state-count {
+  flex-shrink: 0; font: 500 11px/1 var(--font-mono); padding: 3px 6px; border-radius: 5px;
+  background: var(--bg); color: var(--text-2);
+}
+.cal-state-opt[aria-current="true"] .cal-state-count { color: var(--lavender); }
+.cal-state-sep { flex-shrink: 0; height: 1px; margin: 4px 8px; background: var(--line-2); }
 .cal-modes { margin-left: 8px; padding: 3px; border-radius: 9px; }
 .cal-modes .tab { height: 30px; padding: 0 12px; font-size: 13px; }
 .cal-export { height: 36px; padding: 0 12px; font-size: 13px; display: flex; align-items: center; gap: 6px; }

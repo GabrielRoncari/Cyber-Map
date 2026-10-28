@@ -43,8 +43,8 @@
       <nav class="site-nav" aria-label="Principal">
         <a class="nav-link" href="#mapa" aria-current="page">Mapa</a>
         <a class="nav-link" href="#calendario">Calendário</a>
-        <!-- TODO: link para sugerir evento (o JS troca pelo SUGGEST_URL de js/cyber-map.js) -->
-        <a class="btn-primary nav-suggest" href="#" data-suggest>
+        <!-- O JS repete este endereço a partir do SUGGEST_URL de js/cyber-map.js (e abre em outra aba). -->
+        <a class="btn-primary nav-suggest" href="https://github.com/GabrielRoncari/Cyber-Map/issues/new?template=sugerir-evento.yml" data-suggest>
           <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1.5v11M1.5 7h11"></path></svg>
           Sugerir evento
         </a>
@@ -86,6 +86,7 @@
         </div>
 
         <div class="map-host" id="brazil-map"></div>
+        <div class="map-pop scroll-thin" id="map-pop" role="dialog" aria-labelledby="map-pop-title" hidden></div>
         <div class="map-status" id="map-status" role="status">
           <p id="map-status-text">Carregando mapa…</p>
           <button type="button" class="btn-ghost" id="map-retry" hidden>Tentar de novo</button>
@@ -141,11 +142,13 @@
           <button type="button" class="btn-ghost cal-step" id="cal-next" aria-label="Próximo mês">
             <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5L10.5 8 6 12.5"></path></svg>
           </button>
-          <label class="cal-state">
-            <span class="sr-only">Estado</span>
-            <select id="cal-state"><option value="">Todos os estados</option></select>
-            <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"></path></svg>
-          </label>
+          <div class="cal-state" id="cal-state">
+            <button type="button" class="btn-ghost cal-state-btn" id="cal-state-btn" aria-expanded="false" aria-controls="cal-state-menu">
+              <span class="sr-only">Estado: </span><span class="cal-state-text" id="cal-state-text">Todos os estados</span>
+              <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"></path></svg>
+            </button>
+            <div class="cal-state-menu scroll-thin" id="cal-state-menu" role="group" aria-label="Filtrar por estado" hidden></div>
+          </div>
           <div class="tabs cal-modes" role="group" aria-label="Quais eventos mostrar">
             <button type="button" class="tab" id="cal-all" aria-pressed="true">Todos</button>
             <button type="button" class="tab" id="cal-mine" aria-pressed="false">Minha agenda <span class="tab-count tab-count-up" id="cal-mine-count">0</span></button>
