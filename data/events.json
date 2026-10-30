@@ -33,6 +33,19 @@
       }
     },
     {
+      "name": "Dia da Internet Segura 2026",
+      "calendarLabel": "SID 2026",
+      "type": "conference",
+      "organizer": "institution",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "startDate": "2026-02-10",
+      "endDate": "2026-02-11",
+      "description": "Evento tradicional voltado para conscientizar os usuários finais sobre segurança na Internet."
+    },
+    {
       "name": "OSINT & Cachaça 2026",
       "calendarLabel": "OSINT & Cachaça",
       "type": "meetup",
@@ -965,6 +978,17 @@
       }
     },
     {
+      "name": "Netuno meeting - Data protection talks | Seguro Cibernético",
+      "calendarLabel": "Netuno Meeting",
+      "type": "meetup",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "startDate": "2026-08-28",
+      "description": "Netuno meeting discutirá sobre seguro cibernético, desde a contratação ao sinistro."
+    },
+    {
       "name": "Hack'a Valley Security Conference 2026",
       "calendarLabel": "Hack'a Valley",
       "type": "conference",
@@ -1200,6 +1224,24 @@
       "links": {
         "site": "https://securityleaders.com.br/eventos/security-leaders-fortaleza-2026/",
         "tickets": "https://checkout.securityleaders.com.br/"
+      }
+    },
+    {
+      "name": "TDC São Paulo 2026 - Trilha Software Security",
+      "calendarLabel": "TDC SP Security",
+      "type": "conference",
+      "organizer": "company",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "ProMagno",
+      "startDate": "2026-09-25",
+      "description": "Trilha de software security do TDC São Paulo com palestras práticas e painel sobre IA e AppSec.",
+      "links": {
+        "site": "https://thedevconf.com/tdc/2026/sao-paulo/trilha-software-security",
+        "tickets": "https://inscricoes.thedevconf.com/novaInscricao/tdc-2026-saopaulo?mdi=6026#div-premium-presencial-sao-paulo",
+        "youtube": "https://www.youtube.com/TheDevConf"
       }
     },
     {
@@ -1443,6 +1485,17 @@
       }
     },
     {
+      "name": "Capacitação em Proteção de Dados | Conceitos Básicos de LGPD",
+      "calendarLabel": "Capacitação LGPD",
+      "type": "workshop",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "startDate": "2026-10-27",
+      "description": "Capacitação em proteção de dados focada em conceitos básicos de LGPD."
+    },
+    {
       "name": "Human Risk Day 2026",
       "calendarLabel": "Human Risk Day",
       "type": "conference",
@@ -1546,6 +1599,22 @@
       "description": "Simpósio presencial na UnB sobre riscos cibernéticos no agronegócio, com 11 palestras e 3 painéis; organizado por FGV Agro, OSCA, SOBER e FACE/UnB.",
       "links": {
         "tickets": "https://www.sympla.com.br/evento/simposio-brasileiro-de-seguranca-cibernetica-no-agronegocio/3630937"
+      }
+    },
+    {
+      "name": "Workshop: Segurança Digital: proteja seus dados e seus negócios",
+      "calendarLabel": "Segurança Digital",
+      "type": "workshop",
+      "city": "São Mateus",
+      "state": "es",
+      "lat": -18.7214,
+      "lon": -39.8579,
+      "venue": "Bússola Hub",
+      "startDate": "2026-11-11",
+      "description": "Workshop presencial sobre segurança digital e proteção de dados.",
+      "links": {
+        "site": "https://www.sympla.com.br/evento/workshop-seguranca-digital-proteja-seus-dados-e-seus-negocios/3608540",
+        "tickets": "https://www.sympla.com.br/evento/workshop-seguranca-digital-proteja-seus-dados-e-seus-negocios/3608540"
       }
     },
     {
@@ -1874,6 +1943,22 @@
       "links": {
         "site": "https://cybersecgo.com.br/",
         "tickets": "https://www.sympla.com.br/evento/cybersecgo-2027/3533715"
+      }
+    },
+    {
+      "name": "IAM TECH DAY São Paulo '27",
+      "calendarLabel": "IAM Tech Day SP",
+      "type": "conference",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "startDate": "2027-05-06",
+      "description": "O principal encontro focado em Identity & Access Management no Brasil está de volta a São Paulo.",
+      "links": {
+        "site": "https://iamtechday.org/eventos/iam-tech-day-sao-paulo-27/",
+        "tickets": "https://www.sympla.com.br/evento/iam-tech-day-2027/3582863",
+        "youtube": "https://www.youtube.com/@IAMTechDay/"
       }
     },
     {
