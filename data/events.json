@@ -1582,6 +1582,40 @@
       }
     },
     {
+      "name": "CyberSecFest Belo Horizonte 2026",
+      "calendarLabel": "CyberSecFest BH",
+      "type": "conference",
+      "organizer": "company",
+      "city": "Belo Horizonte",
+      "state": "mg",
+      "lat": -19.9102,
+      "lon": -43.9266,
+      "venue": "Belo Horizonte, Brazil",
+      "startDate": "2026-11-04",
+      "description": "Full-day cyber security leadership conference targeting C-level executives and technology decision-makers.",
+      "links": {
+        "site": "https://infosec-conferences.com/event/20261104-cybersecfest-belo-horizonte-2026/",
+        "tickets": "https://infosec-conferences.com/event/20261104-cybersecfest-belo-horizonte-2026/"
+      }
+    },
+    {
+      "name": "CISOXBrazil 2026",
+      "calendarLabel": "CISOXBrazil",
+      "type": "conference",
+      "organizer": "company",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "Sao Paulo, Brazil",
+      "startDate": "2026-11-05",
+      "description": "Executive cybersecurity forum designed specifically for senior leaders navigating complex regulatory environments.",
+      "links": {
+        "site": "https://infosec-conferences.com/event/20261105-cisoxbrazil-2026/",
+        "tickets": "https://infosec-conferences.com/event/20261105-cisoxbrazil-2026/"
+      }
+    },
+    {
       "name": "FatecSeg 2026 – Congresso de Segurança da Informação",
       "calendarLabel": "FatecSeg 2026",
       "type": "conference",
