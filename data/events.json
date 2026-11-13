@@ -1294,6 +1294,23 @@
       }
     },
     {
+      "name": "Oportunidades de cybersecurity no setor financeiro",
+      "calendarLabel": "Cyber Setor Fin",
+      "type": "conference",
+      "organizer": "institution",
+      "city": "Florianópolis",
+      "state": "sc",
+      "lat": -27.5945,
+      "lon": -48.5477,
+      "venue": "Centro de Inovação ACATE Primavera",
+      "startDate": "2026-09-30",
+      "description": "Oportunidades de cybersecurity no setor financeiro: como fintechs e security techs podem escalar juntas no ecossistema",
+      "links": {
+        "site": "https://www.sympla.com.br/evento/oportunidades-de-cybersecurity-no-setor-financeiro/3585406",
+        "tickets": "https://www.sympla.com.br/evento/oportunidades-de-cybersecurity-no-setor-financeiro/3585406"
+      }
+    },
+    {
       "name": "XVI Encontro de Segurança em Informática (EnSI) 2026",
       "calendarLabel": "EnSI CERT.Bahia",
       "type": "conference",
@@ -1307,6 +1324,24 @@
       "description": "Encontro gratuito do CERT.Bahia com palestras de segurança e CTF, no auditório do IME/UFBA.",
       "links": {
         "site": "https://ensi.pop-ba.rnp.br/"
+      }
+    },
+    {
+      "name": "Roadsec 2026",
+      "calendarLabel": "Roadsec 2026",
+      "type": "conference",
+      "organizer": "company",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "A confirmar",
+      "startDate": "2026-10-01",
+      "description": "O maior evento itinerante de segurança da informação da América Latina.",
+      "links": {
+        "site": "https://roadsec.com.br/",
+        "tickets": "https://roadsec.com.br/",
+        "youtube": "https://www.youtube.com/@justcyber"
       }
     },
     {
