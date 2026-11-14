@@ -1786,6 +1786,24 @@
       }
     },
     {
+      "name": "Conferência de Cibersegurança e Hacking no Brasil | 8.8 2026",
+      "calendarLabel": "8.8 Brasil",
+      "type": "conference",
+      "organizer": "community",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "Hotel Jaragua Inn",
+      "startDate": "2026-11-26",
+      "description": "Conferência de cibersegurança e hacking 8.8 com foco em inteligência artificial e segurança.",
+      "links": {
+        "site": "https://unreal.8dot8.org/brasil/",
+        "tickets": "https://store.8dot8.org/",
+        "youtube": "https://www.youtube.com/c/8dot8"
+      }
+    },
+    {
       "name": "Itec Day 2026",
       "calendarLabel": "Itec Day 2026",
       "type": "conference",
