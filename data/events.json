@@ -277,6 +277,24 @@
       }
     },
     {
+      "name": "1º Capture The Flag (CTF) exclusivo para mulheres – Hackers do Bem",
+      "calendarLabel": "CTF Hackers do Bem",
+      "type": "ctf",
+      "organizer": "institution",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "Universidade de São Paulo",
+      "startDate": "2026-04-04",
+      "endDate": "2026-04-05",
+      "description": "O Programa Hackers do Bem promove o primeiro CTF exclusivo para mulheres na USP.",
+      "links": {
+        "site": "https://ctfparaelas.hackersdobem.org.br/",
+        "tickets": "https://ctfparaelas.hackersdobem.org.br/"
+      }
+    },
+    {
       "name": "0xE Hacker Conference 2026",
       "calendarLabel": "0xE Hacker Conf",
       "type": "conference",
@@ -726,6 +744,24 @@
       }
     },
     {
+      "name": "Treinamento Segurança Ofensiva",
+      "calendarLabel": "Treinamento ISACA",
+      "type": "workshop",
+      "organizer": "institution",
+      "city": "Belo Horizonte",
+      "state": "mg",
+      "lat": -19.9102,
+      "lon": -43.9266,
+      "venue": "Treinamento Online a partir da Sede ISACA BH",
+      "startDate": "2026-06-20",
+      "endDate": "2026-06-27",
+      "description": "Treinamento hands-on de segurança ofensiva e Red Team promovido pelo Capítulo ISACA BH.",
+      "links": {
+        "site": "https://www.sympla.com.br/evento/treinamento-seguranca-ofensiva/3453640",
+        "tickets": "https://www.sympla.com.br/evento/treinamento-seguranca-ofensiva/3453640"
+      }
+    },
+    {
       "name": "Cybersecurity Summit Rio 2026",
       "calendarLabel": "Cyber Summit Rio",
       "type": "conference",
@@ -740,6 +776,23 @@
       "description": "Quarta edição do Cybersecurity Summit Rio conectando segurança, tecnologia e negócios.",
       "links": {
         "tickets": "https://www.sympla.com.br/evento/cybersecurity-summit-rio-2026/3438685"
+      }
+    },
+    {
+      "name": "MBConf 2026. 1",
+      "calendarLabel": "MBConf 2026",
+      "type": "conference",
+      "organizer": "community",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "Vila Olímpia",
+      "startDate": "2026-07-03",
+      "description": "Um evento presencial, gratuito, realizado em São Paulo, focado em cibersegurança prática.",
+      "links": {
+        "site": "http://www.mentebinaria.org.br/",
+        "tickets": "https://www.even3.com.br/mbconf-2026-1-749778/"
       }
     },
     {
@@ -1617,6 +1670,22 @@
       }
     },
     {
+      "name": "H2HC 2026",
+      "calendarLabel": "H2HC 2026",
+      "type": "conference",
+      "organizer": "community",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "A confirmar",
+      "startDate": "2026-11-01",
+      "description": "Hackers to Hackers Conference — a conferência técnica veterana do Brasil.",
+      "links": {
+        "site": "https://www.h2hc.com.br"
+      }
+    },
+    {
       "name": "CyberSecFest Belo Horizonte 2026",
       "calendarLabel": "CyberSecFest BH",
       "type": "conference",
@@ -1786,6 +1855,24 @@
       }
     },
     {
+      "name": "Conferência de Cibersegurança e Hacking no Brasil | 8.8 2026",
+      "calendarLabel": "8.8 Brasil",
+      "type": "conference",
+      "organizer": "community",
+      "city": "São Paulo",
+      "state": "sp",
+      "lat": -23.5329,
+      "lon": -46.6395,
+      "venue": "Hotel Jaragua Inn",
+      "startDate": "2026-11-26",
+      "description": "Conferência de cibersegurança e hacking 8.8 com foco em inteligência artificial e segurança.",
+      "links": {
+        "site": "https://unreal.8dot8.org/brasil/",
+        "tickets": "https://store.8dot8.org/",
+        "youtube": "https://www.youtube.com/c/8dot8"
+      }
+    },
+    {
       "name": "Itec Day 2026",
       "calendarLabel": "Itec Day 2026",
       "type": "conference",
@@ -1889,6 +1976,23 @@
       "links": {
         "site": "https://dpgconference.com.br/",
         "tickets": "https://cursos.dataprivacy.com.br/front/detalhes/340/dpgc-2026"
+      }
+    },
+    {
+      "name": "CIAISD 2026",
+      "calendarLabel": "CIAISD 2026",
+      "type": "conference",
+      "organizer": "institution",
+      "city": "Novo Hamburgo",
+      "state": "rs",
+      "lat": -29.6875,
+      "lon": -51.1328,
+      "venue": "Centro de Inovação e Tecnologia (CIT) de Novo Hamburgo",
+      "startDate": "2026-12-10",
+      "description": "Conferência de Inteligência Artificial, Inovação e Segurança Digital em Novo Hamburgo.",
+      "links": {
+        "site": "https://brasilinovador.com.br/ciaisd-2026-reune-lideres-em-novo-hamburgo-para-debater-inteligencia-artificial-e-seguranca-digital/",
+        "tickets": "https://luma.com/ciw6zlh2"
       }
     },
     {
